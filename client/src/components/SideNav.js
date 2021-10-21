@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import recipeService from '../services/recipeService'
+import React from 'react'
 
-const SideNav = () => {
-  const [ recipes, setRecipes ] = useState(null)
-  useEffect(async () => {
-    const res = await recipeService.recipes()
-    setRecipes(res.data)
-  }, [])
+const SideNav = ({ recipes }) => {
   return (
     <>
       <p>SideNav</p>
       {
         recipes
-          ? <ul>{ recipes.books.map(book => <li>{ book.name }</li>) }</ul>
+          ? <ul>
+              { recipes.books.map(book =>
+                <li key={ book.id }>{ book.name }</li>)
+              }
+            </ul>
           : 'Loading...'
       }
     </>
