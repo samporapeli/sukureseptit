@@ -4,8 +4,27 @@ const PORT = process.env.PORT || 3001
 
 const app = express()
 
-app.get('/api/v1/', (req, res) => {
-  res.json({ message: 'Hello, World!' })
+app.get('/api/v1/recipes', (req, res) => {
+  res.json({
+    books: [
+      {
+        family: 'Rautiainen',
+        name: 'Rautiaisen suvun keittokirja',
+        recipes: [
+          {
+            id: 'fffff1234',
+            name: 'Ruutin linssikeitto',
+            instructions: 'Sample instructions for lentil soup',
+            mealType: 'pääruoka',
+            cookingTime: 60,
+            originalAuthor: 'Ruuti Rautiainen',
+            picture: null,
+            portions: 6,
+          },
+        ]
+      }
+    ]
+  })
 })
 
 app.listen(PORT, () => {
