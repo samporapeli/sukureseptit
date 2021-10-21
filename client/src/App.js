@@ -1,10 +1,18 @@
 import React from 'react'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import RecipeBookCover from './components/RecipeBookCover'
 
 const App = () => {
   return (
-    <div>
-      <h1>Sukureseptit</h1>
-    </div>
+    <>
+      <Header />
+      <div>
+        <h1>Sukureseptit</h1>
+        <RecipeBookCover />
+      </div>
+      <Footer />
+    </>
   )
 }
 
