@@ -4,8 +4,11 @@ const Comment = ({ authorName, commentContent }) => {
   return (
     <>
       <p>Comment</p>
-      <p>{commentContent}</p>
-      <p>{authorName}</p>
+      <ul>
+        <li>{commentContent}</li>
+        <li>{authorName}</li>
+      </ul>
+      
     </>
   )
 }

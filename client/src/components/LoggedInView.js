@@ -14,9 +14,16 @@ const LoggedInView = () => {
   return (
     <>
       <h1>Sukureseptit</h1>
-      <SideNav recipes={recipes} />
-      <RecipeBookCover recipes={recipes} />
-      <Comment authorName="Kalle" commentContent="Juujaa" />
+      {
+        ! recipes
+          ? 'Loading...'
+          :
+            <>
+              <SideNav recipes={recipes} />
+              <RecipeBookCover recipes={recipes} />
+              <Comment authorName="Kalle" commentContent="Juujaa" />
+            </>
+      }
     </>
   )
 }

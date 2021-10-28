@@ -4,15 +4,11 @@ const SideNav = ({ recipes }) => {
   return (
     <>
       <p>SideNav</p>
-      {
-        recipes
-          ? <ul>
-              { recipes.books.map(book =>
-                <li key={ book.id }>{ book.name }</li>)
-              }
-            </ul>
-          : 'Loading...'
-      }
+      <ul>
+        { recipes.books.map(book =>
+          <li key={ book.id }>{ book.name }</li>
+        )}
+      </ul>
     </>
   )
 }
