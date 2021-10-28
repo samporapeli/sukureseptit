@@ -32,7 +32,7 @@ You can create new components using a bash script.
 In the directory client/src/ run this:
 
 ```zsh
-./components.sh ComponentName
+./create_component.sh ComponentName
 ```
 
 If successful, it will create a file in ./components/ComponentName.js,
