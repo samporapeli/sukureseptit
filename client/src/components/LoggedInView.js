@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import recipeService from '../services/recipeService'
 import RecipeBookCover from './RecipeBookCover'
 import SideNav from './SideNav'
+import Comment from './Comment'
 
 const LoggedInView = () => {
   const [ recipes, setRecipes ] = useState(null)
@@ -15,6 +16,7 @@ const LoggedInView = () => {
       <h1>Sukureseptit</h1>
       <SideNav recipes={recipes} />
       <RecipeBookCover recipes={recipes} />
+      <Comment authorName="Kalle" commentContent="Juujaa" />
     </>
   )
 }
