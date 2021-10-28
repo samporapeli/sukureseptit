@@ -5,7 +5,7 @@ const RecipeBookCover = ({ recipes }) => {
   return (
     <>
       <div class="recipe-book-cover">
-        <h2>{ recipes.books[0].name }</h2>
+        <h2>{ recipes ? recipes.books[0].name : 'Ladataan...' }</h2>
       </div>
       <h3>Näytä reseptit käyttäjän mukaan</h3>
       <ul>
@@ -16,7 +16,7 @@ const RecipeBookCover = ({ recipes }) => {
       <button onClick={ () => alert('not yet implemented') }>
         Kopioi rekisteröitymislinkki
       </button>
-      <p>Salaisen rekisteröitymilinkin kautta liittymällä sukulaisesi saavat oikeuden tarkastella { recipes.books[0].name }a ja lisätä omia reseptejään.</p>
+      <p>Salaisen rekisteröitymilinkin kautta liittymällä sukulaisesi saavat oikeuden tarkastella { recipes ? recipes.books[0].name : 'reseptikirja'}a ja lisätä omia reseptejään.</p>
     </>
   )
 }
