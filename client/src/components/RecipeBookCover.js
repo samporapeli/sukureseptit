@@ -4,7 +4,7 @@ import '../styles/RecipeBookCover.scss'
 const RecipeBookCover = ({ recipes }) => {
   return (
     <>
-      <div class="recipe-book-cover">
+      <div className="recipe-book-cover">
         <h2>{ recipes ? recipes.books[0].name : 'Ladataan...' }</h2>
       </div>
       <h3>Näytä reseptit käyttäjän mukaan</h3>
