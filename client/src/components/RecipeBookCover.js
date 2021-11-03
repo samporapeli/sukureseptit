@@ -9,11 +9,11 @@ const RecipeBookCover = ({ recipes, family }) => {
       </div>
       <h3>Näytä reseptit käyttäjän mukaan</h3>
       <ul>
-        {family
-        ? family.members.map(member => {
+        {family.members
+        ? family.members.map(member =>
           <li key={member.name}>{ member.name }</li>
-        })
-        : <li>Ladataan...'</li>}
+        )
+        : <li>Ladataan...</li>}
       </ul>
       <button onClick={ () => alert('not yet implemented') }>
         Kopioi rekisteröitymislinkki
