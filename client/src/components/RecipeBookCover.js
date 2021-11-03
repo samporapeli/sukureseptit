@@ -1,17 +1,19 @@
 import React from 'react'
 import '../styles/RecipeBookCover.scss'
 
-const RecipeBookCover = ({ recipes }) => {
+const RecipeBookCover = ({ recipes, family }) => {
   return (
     <>
-      <div class="recipe-book-cover">
+      <div className="recipe-book-cover">
         <h2>{ recipes ? recipes.books[0].name : 'Ladataan...' }</h2>
       </div>
       <h3>Näytä reseptit käyttäjän mukaan</h3>
       <ul>
-        <li>Kaisa Rautiainen</li>
-        <li>Helena Rautiainen</li>
-        <li>Anton Rautiainen</li>
+        {family
+        ? family.members.map(member => {
+          <li key={member.name}>{ member.name }</li>
+        })
+        : <li>Ladataan...'</li>}
       </ul>
       <button onClick={ () => alert('not yet implemented') }>
         Kopioi rekisteröitymislinkki
