@@ -18,6 +18,7 @@ npm install
 cd client
 npm install
 cd ..
+npm run create-fake-data
 npm start
 ```
 
