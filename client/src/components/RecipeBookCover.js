@@ -8,7 +8,7 @@ const RecipeBookCover = ({ recipes, family }) => {
         <h2>{ recipes ? recipes.books[0].name : 'Ladataan...' }</h2>
       </div>
       <h3>Näytä reseptit käyttäjän mukaan</h3>
-      <ul>
+      <ul className='list-disc px-6'>
         {family
         ? family.members.map(member =>
           <li key={member.firstName + ' ' + member.lastName}>
@@ -17,7 +17,7 @@ const RecipeBookCover = ({ recipes, family }) => {
         )
         : <li>Ladataan...</li>}
       </ul>
-      <button onClick={ () => alert('not yet implemented') }>
+      <button className='btn btn-green' onClick={ () => alert('not yet implemented') }>
         Kopioi rekisteröitymislinkki
       </button>
       <p>Salaisen rekisteröitymilinkin kautta liittymällä sukulaisesi saavat oikeuden tarkastella { recipes ? recipes.books[0].name : 'reseptikirja'}a ja lisätä omia reseptejään.</p>
