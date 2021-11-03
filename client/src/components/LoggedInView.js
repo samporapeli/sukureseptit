@@ -13,8 +13,12 @@ const LoggedInView = () => {
     setRecipes(res.data)
   }, [])
 
-  useEffect(async () => {
-    setFamily((await recipeService.family()).data)
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await recipeService.family()
+      setFamily(res.data)
+    }
+    fetchData()
   }, [])
 
   return (

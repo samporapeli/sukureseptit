@@ -29,19 +29,9 @@ app.get('/api/v1/recipes', (req, res) => {
   })
 })
 
-app.get('/api/v1/family', (req, res) => {
+app.get('/api/v1/family', async (req, res) => {
   res.json({
-    members: [
-      {
-        name: 'Kaisa Rautiainen'
-      },
-      {
-        name: 'Helena Rautiainen'
-      },
-      {
-        name: 'Anton Rautiainen'
-      },
-    ]
+    members: (await db.User.findAll())
   })
 })
 
