@@ -9,7 +9,7 @@ const RecipeBookCover = ({ recipes, family }) => {
       </div>
       <h3>Näytä reseptit käyttäjän mukaan</h3>
       <ul>
-        {family.members
+        {family
         ? family.members.map(member =>
           <li key={member.name}>{ member.name }</li>
         )
