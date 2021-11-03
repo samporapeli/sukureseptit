@@ -10,7 +10,7 @@ There are two npm projects in this repository, one at root level (for server)
 and other in the client directory.
 
 ## Development setup
-Please use Node version 16.
+Please use Node version 14.
 Using [NVM](https://github.com/nvm-sh/nvm) might be a good idea.
 
 ```zsh
