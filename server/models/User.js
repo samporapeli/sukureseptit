@@ -1,7 +1,14 @@
 const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {}
+  class User extends Model {
+    toJson() {
+      return {
+        firstName: this.firstName,
+        lastName: this.lastName,
+      }
+    }
+  }
   User.init({
     firstName: {
       type: DataTypes.STRING,

@@ -31,7 +31,7 @@ app.get('/api/v1/recipes', (req, res) => {
 
 app.get('/api/v1/family', async (req, res) => {
   res.json({
-    members: (await db.User.findAll())
+    members: (await db.User.findAll()).map(m => m.toJson())
   })
 })
 
