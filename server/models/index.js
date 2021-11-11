@@ -5,6 +5,7 @@ const basename = path.basename(__filename)
 const env = process.env.NODE_ENV || 'development'
 const config = require(__dirname + '/../config/config.json')[env]
 const db = {}
+const createAssociations = require('./associations.js')
 
 let sequelize
 if (config.use_env_variable) {
@@ -18,6 +19,7 @@ fs
   .filter(file => {
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js')
   })
+  .filter(file => file[0] === file[0].toUpperCase())
   .forEach(file => {
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes)
     db[model.name] = model
@@ -31,5 +33,7 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize
+
+createAssociations(db)
 
 module.exports = db

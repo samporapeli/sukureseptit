@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3001
 
 const app = express()
 
-app.get('/api/v1/recipes', (req, res) => {
+app.get('/api/v1/recipes', async (req, res) => {
   res.json({
     books: [
       {
@@ -13,16 +13,7 @@ app.get('/api/v1/recipes', (req, res) => {
         family: 'Rautiainen',
         name: 'Rautiaisen suvun keittokirja',
         recipes: [
-          {
-            id: 'fffff1234',
-            name: 'Ruutin linssikeitto',
-            instructions: 'Sample instructions for lentil soup',
-            mealType: 'pääruoka',
-            cookingTime: 60,
-            originalAuthor: 'Ruuti Rautiainen',
-            picture: null,
-            portions: 6,
-          },
+          (await db.Recipe.findAll({ include: db.Ingredient }))
         ]
       }
     ]
@@ -31,7 +22,7 @@ app.get('/api/v1/recipes', (req, res) => {
 
 app.get('/api/v1/family', async (req, res) => {
   res.json({
-    members: (await db.User.findAll())
+    members: (await db.User.findAll()).map(m => m.toJson())
   })
 })
 
