@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/index.js & cd client && npm start",
+    "create-fake-data": "node server/create_fake_data.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -12,9 +13,12 @@
   "dependencies": {
     "axios": "^0.23.0",
     "express": "^4.17.1",
-    "sass": "^1.43.2"
+    "sass": "^1.43.2",
+    "sequelize": "^6.9.0",
+    "sqlite3": "^5.0.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.14"
+    "nodemon": "^2.0.14",
+    "sequelize-cli": "^6.3.0"
   }
 }

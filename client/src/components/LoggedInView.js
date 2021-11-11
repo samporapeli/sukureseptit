@@ -22,8 +22,12 @@ const LoggedInView = () => {
     setRecipes(res.data)
   }, [])
 
-  useEffect(async () => {
-    setFamily((await recipeService.family()).data)
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await recipeService.family()
+      setFamily(res.data)
+    }
+    fetchData()
   }, [])
 
   return (
@@ -36,9 +40,11 @@ const LoggedInView = () => {
           :
             <>
               <SideNav recipes={recipes} />
-              <RecipeBookCover recipes={recipes} family={family} />
-              <Recipe originalAuthor="Sampo" mealType="Keitto" portions="4" cookingTime="50min" name="Sampon linssikeitto" ingredients={LinssikeittoIngredients} instructions={LinssikeittoInstructions} />
-              <Comment authorName="Kalle" commentContent="Juujaa" />
+              <div className='container px-10 mx-auto'>
+                <RecipeBookCover recipes={recipes} family={family} />
+                <Recipe originalAuthor="Sampo" mealType="Keitto" portions="4" cookingTime="50min" name="Sampon linssikeitto" ingredients={LinssikeittoIngredients} instructions={LinssikeittoInstructions} />
+                <Comment authorName="Kalle" commentContent="Juujaa" />
+              </div>
             </>
       }
     </>
