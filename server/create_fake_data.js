@@ -1,3 +1,4 @@
+const { sequelize } = require('./models/index')
 const db = require('./models/index')
 
 const fake = async () => {
@@ -47,16 +48,22 @@ const fake = async () => {
   )
 
   ingredients.forEach(data =>
-    db.Ingredient.create({ ...data })  
+    db.Ingredient.create({ ...data })
   )
 
   recipes.forEach(data =>
-    db.Recipe.create({ ...data })  
+    db.Recipe.create({ ...data })
   )
 
+  const hellu = await db.User.findOne({ where: { firstName: 'Helena' } })
   const lentilsoup = (await db.Recipe.findAll())[0]
   await lentilsoup.setIngredients(await db.Ingredient.findAll())
-  await lentilsoup.save()
+  await lentilsoup.createRecipeComment({
+    comment: 'Erittäin maistuva linssikeitto!',
+  })
+  ;(await db.RecipeComment.findAll()).forEach(async (c) => {
+    await c.setUser(hellu)
+  })
 }
 
 fake()

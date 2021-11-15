@@ -13,10 +13,21 @@ app.get('/api/v1/recipes', async (req, res) => {
         family: 'Rautiainen',
         name: 'Rautiaisen suvun keittokirja',
         recipes: [
-          (await db.Recipe.findAll({ include: db.Ingredient }))
+          (await db.Recipe.findAll({
+            include: [db.Ingredient]
+          }))
         ]
       }
     ]
+  })
+})
+
+app.get('/api/v1/recipe/:id', async (req, res) => {
+  res.json({
+    recipe: (await db.Recipe.findOne({
+      where: { id: req.params.id },
+      include: [db.Ingredient, db.RecipeComment],
+    }))
   })
 })
 
