@@ -64,6 +64,18 @@ const fake = async () => {
   ;(await db.RecipeComment.findAll()).forEach(async (c) => {
     await c.setUser(hellu)
   })
+
+  const rb = await hellu.createRecipeBook({
+    familyName: hellu.lastName,
+    description: 'Hellun sukukirja',
+  })
+
+  ;(await db.Recipe.findAll()).forEach(async r => {
+    await rb.addRecipe(r)
+  })
+  ;(await db.User.findAll()).forEach(async u => {
+    await rb.addUser(u)
+  })
 }
 
 fake()

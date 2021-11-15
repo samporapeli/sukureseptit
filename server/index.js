@@ -37,6 +37,12 @@ app.get('/api/v1/family', async (req, res) => {
   })
 })
 
+app.get('/api/v1/books', async (req, res) => {
+  res.json({
+    books: (await db.RecipeBook.findAll({ include: [db.Recipe, db.User] }))
+  })
+})
+
 app.listen(PORT, () => {
   console.log(`Express server listening at http://localhost:${PORT}`)
 })
