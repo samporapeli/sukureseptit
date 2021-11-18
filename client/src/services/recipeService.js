@@ -12,7 +12,12 @@ const family = async () => {
   return await axios.get(`${baseUrl}/api/v1/family`)
 }
 
+const books = async () => {
+  return await axios.get(`${baseUrl}/api/v1/books`)
+}
+
 export default {
   recipes,
   family,
+  books,
 }
