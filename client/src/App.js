@@ -6,16 +6,20 @@ import LoggedInView from './components/LoggedInView'
 
 const App = () => {
   return (
-    <Router>
+    <>
       <Header />
-      <Routes>
-        <Route path='logged-in' element={<LoggedInView />} />
-        <Route path='/' element={
-          <h2>Please <Link to={'logged-in'}>Log in</Link></h2>
-        } />
-      </Routes>
+      <Router>
+        <Routes>
+          <Route path='/'>
+            <Route index element={
+            <h2>Please <Link to={'home'}>Log in</Link></h2>
+          } />
+            <Route path='/home*' element={<LoggedInView />} />
+          </Route>
+        </Routes>
+      </Router>
       <Footer />
-    </Router>
+    </>
   )
 }
 

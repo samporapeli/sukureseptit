@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import recipeService from '../services/recipeService'
 import RecipeBookCover from './RecipeBookCover'
 import SideNav from './SideNav'
@@ -41,9 +42,21 @@ const LoggedInView = () => {
             <>
               <SideNav recipes={recipes} />
               <div className='container px-10 mx-auto'>
-                <RecipeBookCover recipes={recipes} family={family} />
-                <Recipe originalAuthor="Sampo" mealType="Keitto" portions="4" cookingTime="50min" name="Sampon linssikeitto" ingredients={LinssikeittoIngredients} instructions={LinssikeittoInstructions} />
-                <Comment authorName="Kalle" commentContent="Juujaa" />
+                <Routes>
+                  <Route path=''>
+                    <Route index element={
+                      <>
+                      <RecipeBookCover recipes={recipes} family={family} />
+                      </>
+                    }/>
+                    <Route path='linssikeitto' element={
+                      <>
+                        <Recipe originalAuthor="Sampo" mealType="Keitto" portions="4" cookingTime="50min" name="Sampon linssikeitto" ingredients={LinssikeittoIngredients} instructions={LinssikeittoInstructions} />
+                        <Comment authorName="Kalle" commentContent="Juujaa" />
+                      </>
+                    } />
+                  </Route>
+                </Routes>
               </div>
             </>
       }
