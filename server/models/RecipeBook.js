@@ -1,29 +1,25 @@
 const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
-  class Ingredient extends Model {}
-  Ingredient.init({
+  class RecipeBook extends Model {}
+  RecipeBook.init({
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
       allowNull: false,
       defaultValue: DataTypes.UUIDV4,
     },
-    amount: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    unit: {
+    familyName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    name: {
+    description: {
       type: DataTypes.STRING,
       allowNull: true,
     },
   }, {
     sequelize,
-    modelName: 'Ingredient',
+    modelName: 'RecipeBook',
   })
-  return Ingredient
+  return RecipeBook
 }
