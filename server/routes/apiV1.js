@@ -19,6 +19,28 @@ router.get('/recipes', async (req, res) => {
   })
 })
 
+router.post('/recipe', async (req, res) => {
+  try {
+    const newRecipe = await db.Recipe.create({
+      ...req.body
+    })
+    req.body.ingredients.forEach(ingr => {
+      newRecipe.createIngredient({
+        ...ingr
+      })
+    })
+    res.json({
+      status: 'OK',
+      created: newRecipe,
+    })
+  } catch {
+    res.status(500).json({
+      status: 'error',
+      error: 'Internal server error',
+    })
+  }
+})
+
 router.get('/recipe/:id', async (req, res) => {
   res.json({
     recipe: (await db.Recipe.findOne({
