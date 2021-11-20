@@ -28,6 +28,28 @@ router.get('/recipe/:id', async (req, res) => {
   })
 })
 
+router.post('/recipe/:id/comment', async (req, res) => {
+  try {
+    console.log(req.body)
+    const newComment = await (await db.Recipe.findOne({
+      where: { id: req.params.id } 
+    })).createRecipeComment({
+      comment: req.body.comment,
+      picture: null,
+    })
+    // TODO: associate user with the comment
+    res.json({
+      status: 'OK',
+      created: newComment,
+    })
+  } catch (e) {
+    console.error(e)
+    res.status(500).json({
+      error: 'Internal server error',
+    })
+  }
+})
+
 router.get('/family', async (req, res) => {
   res.json({
     members: (await db.User.findAll()).map(m => m.toJson())
