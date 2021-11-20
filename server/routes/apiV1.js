@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const db = require('../models/index')
 
-router.get('/recipes', async (req, res) => {
+router.get('/book/:bookID/recipes', async (req, res) => {
   res.json({
     books: [
       {
@@ -19,11 +19,14 @@ router.get('/recipes', async (req, res) => {
   })
 })
 
-router.post('/recipe', async (req, res) => {
+router.post('/book/:bookID/recipe', async (req, res) => {
   try {
-    const newRecipe = await db.Recipe.create({
-      ...req.body
-    })
+    const newRecipe = await
+      (await db.RecipeBook.findOne({
+        where: { id: req.params.bookID }
+      })).createRecipe({
+        ...req.body
+      })
     req.body.ingredients.forEach(ingr => {
       newRecipe.createIngredient({
         ...ingr
@@ -41,7 +44,7 @@ router.post('/recipe', async (req, res) => {
   }
 })
 
-router.get('/recipe/:id', async (req, res) => {
+router.get('/book/:bookID/recipe/:id', async (req, res) => {
   res.json({
     recipe: (await db.Recipe.findOne({
       where: { id: req.params.id },
@@ -50,7 +53,7 @@ router.get('/recipe/:id', async (req, res) => {
   })
 })
 
-router.post('/recipe/:id/comment', async (req, res) => {
+router.post('/book/:bookID/recipe/:id/comment', async (req, res) => {
   try {
     console.log(req.body)
     const newComment = await (await db.Recipe.findOne({
