@@ -9,13 +9,13 @@ const RecipeBookCover = ({ recipes, family }) => {
       <div className="recipe-book-cover">
         <h2 className='flex items-center justify-center'>
           { recipes
-            ? recipes.books.find(b => b.id = params.bookID).familyName
+            ? recipes.books.find(b => b.id === params.bookID).familyName
             : 'Ladataan...'
           }
         </h2>
         <h3 className='flex items-center justify-center'>
           { recipes
-            ? recipes.books.find(b => b.id = params.bookID).description
+            ? recipes.books.find(b => b.id === params.bookID).description
             : 'Ladataan...'
           }
         </h3>
@@ -33,7 +33,7 @@ const RecipeBookCover = ({ recipes, family }) => {
       <button className='btn btn-green' onClick={ () => alert('not yet implemented') }>
         Kopioi rekisteröitymislinkki
       </button>
-      <p>Salaisen rekisteröitymilinkin kautta liittymällä sukulaisesi saavat oikeuden tarkastella { recipes ? recipes.books.find(b => b.id = params.bookID).name : 'reseptikirja'}a ja lisätä omia reseptejään.</p>
+      <p>Salaisen rekisteröitymilinkin kautta liittymällä sukulaisesi saavat oikeuden tarkastella { recipes ? recipes.books.find(b => b.id === params.bookID).name : 'reseptikirja'}a ja lisätä omia reseptejään.</p>
     </>
   )
 }
