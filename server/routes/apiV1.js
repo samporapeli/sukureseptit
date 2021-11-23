@@ -23,6 +23,10 @@ router.post('/book', async (req, res) => {
       familyName: name,
       description,
     })
+    res.json({
+      status: 'OK',
+      newBook,
+    })
     // TODO: associate user with book
   } catch (e) {
     const status = e === 'parameters missing' ? 400 : 500
