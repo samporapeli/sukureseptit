@@ -23,9 +23,11 @@ const LoggedInView = () => {
                 <ul>
                   {
                     books.map(book =>
-                      <Link to={'/kirja/' + book.id}>
-                        <li key={book.id}>{book.familyName}</li>
-                      </Link>
+                        <li key={book.id}>
+                          <Link to={'/kirja/' + book.id}>
+                            {book.familyName}
+                          </Link>
+                        </li>
                     )
                   }
                 </ul>
