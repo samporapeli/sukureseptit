@@ -4,7 +4,7 @@ import TopNav from './TopNav'
 const Header = () => {
   return (
     <>
-      <TopNav />
+      <TopNav currentUser ="Ruuti Rapeli"/>
     </>
   )
 }
