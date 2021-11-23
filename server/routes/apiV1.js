@@ -4,19 +4,33 @@ const db = require('../models/index')
 
 router.get('/book/:bookID/recipes', async (req, res) => {
   res.json({
-    books: [
-      {
-        id: 'eeeee1',
-        family: 'Rautiainen',
-        name: 'Rautiaisen suvun keittokirja',
-        recipes: [
-          (await db.Recipe.findAll({
-            include: [db.Ingredient]
-          }))
-        ]
-      }
-    ]
+    books: await db.RecipeBook.findAll({ include: [db.Recipe] })
   })
+})
+
+router.get('/recipes', async (req, res) => {
+  res.json({
+    books: await db.RecipeBook.findAll({ include: [db.Recipe] })
+  })
+})
+
+router.post('/book', async (req, res) => {
+  try {
+    const name = req.body.familyName
+    const description = req.body.description
+    if (!(name && description)) throw 'parameters missing'
+    const newBook = await db.RecipeBook.create({
+      familyName: name,
+      description,
+    })
+    // TODO: associate user with book
+  } catch (e) {
+    const status = e === 'parameters missing' ? 400 : 500
+    res.status(status).json({
+      status: 'error',
+      error: e,
+    })
+  }
 })
 
 router.post('/book/:bookID/recipe', async (req, res) => {
