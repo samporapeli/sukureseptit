@@ -4,6 +4,7 @@ import RecipeBookCover from './RecipeBookCover'
 import SideNav from './SideNav'
 import Comment from './Comment'
 import Recipe from './Recipe'
+import InputRecipeBook from './InputRecipeBook'
 
 const LinssikeittoIngredients = [
   {amount: 2, name:"sipuli"},
@@ -44,6 +45,7 @@ const LoggedInView = () => {
                 <RecipeBookCover recipes={recipes} family={family} />
                 <Recipe originalAuthor="Sampo" mealType="Keitto" portions="4" cookingTime="50min" name="Sampon linssikeitto" ingredients={LinssikeittoIngredients} instructions={LinssikeittoInstructions} />
                 <Comment authorName="Kalle" commentContent="Juujaa" />
+                <InputRecipeBook />
               </div>
             </>
       }
