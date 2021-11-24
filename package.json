@@ -13,7 +13,9 @@
   "dependencies": {
     "axios": "^0.23.0",
     "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "sass": "^1.43.2",
     "sequelize": "^6.9.0",
     "sqlite3": "^5.0.2"

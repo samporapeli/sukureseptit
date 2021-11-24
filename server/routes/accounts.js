@@ -1,7 +1,9 @@
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const express = require('express')
 const router = express.Router()
 const db = require('../models/index')
+const config = require('../config')
 
 router.post('/register', async (req, res) => {
   const saltRounds = 10
@@ -20,7 +22,7 @@ router.post('/register', async (req, res) => {
       newUser,
     })
   } catch (e) {
-    res.status(401).json({
+    res.status(400).json({
       status: 'error',
       error: e,
     })
@@ -39,7 +41,16 @@ router.post('/login', async (req, res) => {
       ? await bcrypt.compare(params.password, user.passwordHash)
       : false
 
-    if (user && passwordCorrect) res.json('login successful')
+    const token = jwt.sign({
+      email: user.email,
+      id: user.id,
+    }, config.secret)
+    
+    if (user && passwordCorrect) res.json({
+      status: 'OK',
+      user: user,
+      token,
+    })
     else throw 'username or password incorrect'
   } catch (e) {
     res.status(401).json({
