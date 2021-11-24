@@ -20,10 +20,31 @@ router.post('/register', async (req, res) => {
       newUser,
     })
   } catch (e) {
-    console.log(e)
-    res.status(400).json({
+    res.status(401).json({
       status: 'error',
-      message: e,
+      error: e,
+    })
+  }
+})
+
+router.post('/login', async (req, res) => {
+  try {
+    const params = req.body
+    if (!(params.email && params.password))
+      throw 'email and password required!'
+    
+    const user = await db.User.findOne({ where: { email: params.email } })
+    console.log(params.password, user.passwordHash)
+    const passwordCorrect = user 
+      ? await bcrypt.compare(params.password, user.passwordHash)
+      : false
+
+    if (user && passwordCorrect) res.json('login successful')
+    else throw 'username or password incorrect'
+  } catch (e) {
+    res.status(401).json({
+      status: 'error',
+      error: e,
     })
   }
 })
