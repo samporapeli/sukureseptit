@@ -45,10 +45,10 @@ router.post('/login', async (req, res) => {
       email: user.email,
       id: user.id,
     }, config.secret)
-    
+
     if (user && passwordCorrect) res.json({
       status: 'OK',
-      user: user,
+      user: user.toJson(),
       token,
     })
     else throw 'username or password incorrect'
