@@ -12,6 +12,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "axios": "^0.23.0",
+    "bcrypt": "^5.0.1",
     "express": "^4.17.1",
     "sass": "^1.43.2",
     "sequelize": "^6.9.0",
