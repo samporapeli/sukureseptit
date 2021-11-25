@@ -8,11 +8,15 @@ const LoggedOutView = ({ currentUser, setCurrentUser }) => {
 
   const login = async (event) => {
     event.preventDefault()
-    const response = await loginService.login({ email, password })
-    setCurrentUser(response.data.user)
-    window.localStorage.setItem('sukuresepti_token', response.data.token)
-    setEmail('')
-    setPassword('')
+    try {
+      const response = await loginService.login({ email, password })
+      window.localStorage.setItem('sukuresepti_token', response.data.token)
+      setCurrentUser((await loginService.fetchUser()).data.user)
+      setEmail('')
+      setPassword('')
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   return (

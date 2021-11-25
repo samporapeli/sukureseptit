@@ -34,8 +34,7 @@ const App = () => {
           <Route path='/'>
             <Route
               index
-              element={ <LoggedOutView setCurrentUser={setCurrentUser} /> }
-              currentUser={currentUser}
+              element={ <LoggedOutView currentUser={currentUser} setCurrentUser={setCurrentUser} /> }
             />
             <Route
               path='/profiili'
