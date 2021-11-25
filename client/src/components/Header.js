@@ -1,10 +1,10 @@
 import React from 'react'
 import TopNav from './TopNav'
 
-const Header = () => {
+const Header = ({ currentUser }) => {
   return (
     <>
-      <TopNav currentUser ="Ruuti Rapeli"/>
+      <TopNav currentUser={currentUser} />
     </>
   )
 }
