@@ -28,8 +28,8 @@ const App = () => {
 
   return (
     <>
-      <Header currentUser={currentUser} />
       <Router>
+        <Header currentUser={currentUser} />
         <Routes>
           <Route path='/'>
             <Route
@@ -46,8 +46,8 @@ const App = () => {
             <Route path='kirja/:bookID/resepti/:recipeID' element={<RecipeView />} />
           </Route>
         </Routes>
+        <Footer />
       </Router>
-      <Footer />
     </>
   )
 }
