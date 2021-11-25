@@ -60,4 +60,23 @@ router.post('/login', async (req, res) => {
   }
 })
 
+/* Return user data in case user is logged in */
+router.get('/user', async (req, res) => {
+  if (req.user)
+    res.json({
+      status: 'OK',
+      user: {
+        firstName: req.user.firstName,
+        lastName: req.user.lastName,
+        email: req.user.email,
+        createdAt: req.user.createdAt,
+      }
+    })
+  else
+    res.status(401).json({
+      status: 'error',
+      error: 'Authentication using token failed'
+    })
+})
+
 module.exports = router

@@ -17,7 +17,7 @@ const TopNav = ({currentUser}) => {
       </div>
 { currentUser ? (
     <div>
-        <a href="#"
+        <a href="/profiili"
            class="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-black hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
                 {currentUser.firstName + ' ' + currentUser.lastName}
         </a>

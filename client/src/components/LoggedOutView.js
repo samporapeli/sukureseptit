@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import { Navigate } from 'react-router-dom'
 import loginService from '../services/login'
 
-const LoggedOutView = ({ setCurrentUser }) => {
+const LoggedOutView = ({ currentUser, setCurrentUser }) => {
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
 
@@ -17,6 +18,7 @@ const LoggedOutView = ({ setCurrentUser }) => {
   return (
     <>
       <p>Katso alta, miten Sukureseptit toimii, tai kirjaudu sisään!</p>
+      { currentUser ? <Navigate to='/koti' /> : <></> }
       <form onSubmit={login}>
         <input
           type='text'
