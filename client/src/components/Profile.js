@@ -2,6 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Profile = ({ currentUser, setCurrentUser }) => {
+  const logout = () => {
+    window.localStorage.removeItem('sukuresepti_token')
+    setCurrentUser(null)
+    window.location = '/'
+  }
+
   if (currentUser) {
     return (
       <>
@@ -12,6 +18,7 @@ const Profile = ({ currentUser, setCurrentUser }) => {
           { currentUser.email }
         </a></p>
         <p>Omat reseptikirjasi löydät <Link to='/koti'>Koti-sivultasi</Link></p>
+        <button class='btn btn-green' onClick={logout}>Kirjaudu ulos</button>
       </>
   )} else {
     return (
