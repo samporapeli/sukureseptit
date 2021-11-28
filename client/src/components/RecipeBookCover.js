@@ -24,7 +24,7 @@ const RecipeBookCover = ({ recipes, family }) => {
       <ul className='list-disc px-6'>
         {family
         ? family.members.map(member =>
-          <li key={member.firstName + ' ' + member.lastName}>
+          <li key={member.id + ' ' + member.lastName}>
             { member.firstName } { member.lastName }
           </li>
         )

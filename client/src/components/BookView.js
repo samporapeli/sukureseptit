@@ -33,7 +33,7 @@ const BookView = () => {
               <SideNav recipes={recipes} />
               <div className='container px-10 mx-auto'>
                 <Routes>
-                  <Route path=''>
+                  <Route path='/*'>
                     <Route index element={
                       <>
                         <RecipeBookCover recipes={recipes} family={family} />

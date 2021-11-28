@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     toJson() {
       return {
+        id: this.id,
         firstName: this.firstName,
         lastName: this.lastName,
       }
