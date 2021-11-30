@@ -41,7 +41,7 @@ const App = () => {
               element={<Profile currentUser={currentUser} setCurrentUser={setCurrentUser} />}
             />
             <Route path='koti/*' element={<Home />} />
-            <Route path='kirja/:bookID' element={<BookView />} />
+            <Route path='kirja/:bookID' element={<BookView currentUser={currentUser} />} />
             <Route path='kirja/:bookID/resepti/:recipeID' element={<RecipeView />} />
           </Route>
         </Routes>

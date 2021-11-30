@@ -4,7 +4,7 @@ import recipeService from '../services/recipeService'
 import RecipeBookCover from './RecipeBookCover'
 import SideNav from './SideNav'
 
-const BookView = () => {
+const BookView = ({ currentUser }) => {
   const params = useParams()
   const [ recipes, setRecipes ] = useState(null)
   const [ family, setFamily ] = useState(null)
@@ -36,7 +36,7 @@ const BookView = () => {
                   <Route path='/*'>
                     <Route index element={
                       <>
-                        <RecipeBookCover recipes={recipes} family={family} />
+                        <RecipeBookCover recipes={recipes} family={family} currentUser={currentUser} />
                       </>
                     }/>
                   </Route>

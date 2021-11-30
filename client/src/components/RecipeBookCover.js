@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import '../styles/RecipeBookCover.scss'
 
-const RecipeBookCover = ({ recipes, family }) => {
+const RecipeBookCover = ({ recipes, family, currentUser }) => {
   const params = useParams()
 
   const copyInviteLink = async () => {
@@ -12,6 +12,10 @@ const RecipeBookCover = ({ recipes, family }) => {
     }
     else
       alert('Selaimesi ei tue automaattista kopiointia. Kopioi osoitepalkin sisältö manuaalisesti!')
+  }
+
+  const joinToBook = async () => {
+    alert('not yet implemented')
   }
 
   return (
@@ -44,6 +48,10 @@ const RecipeBookCover = ({ recipes, family }) => {
         Kopioi rekisteröitymislinkki
       </button>
       <p>Salaisen kirjalinkin kautta sukulaisesi saavat oikeuden tarkastella reseptikirjaa ja rekisteröitymisen jälkeen lisätä omia reseptejään.</p>
+      { currentUser 
+        ? <button className='btn btn-green' onClick={ joinToBook }>Liity suvun reseptikirjaan</button>
+        : <button className='btn btn-green'><Link to='/'>Rekisteröidy lisätäksesi reseptejä</Link></button>
+      }
     </>
   )
 }
