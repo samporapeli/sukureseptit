@@ -32,7 +32,8 @@ const BookView = ({ currentUser }) => {
   }
 
   const joinToBook = async () => {
-    alert('not yet implemented')
+    const res = await recipeService.joinToBook(params.bookID)
+    if (res.status !== 200) alert(`Error: ${res}`)
   }
 
   return (
