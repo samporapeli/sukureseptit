@@ -4,12 +4,19 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     toJson() {
       return {
+        id: this.id,
         firstName: this.firstName,
         lastName: this.lastName,
       }
     }
   }
   User.init({
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4,
+    },
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,

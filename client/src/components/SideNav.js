@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const SideNav = ({ recipes }) => {
   return (
@@ -7,8 +8,11 @@ const SideNav = ({ recipes }) => {
       {
         recipes
           ? <ul className='list-disc'>
-              { recipes.books.map(book =>
-                <li key={ book.id }>{ book.name }</li>)
+              { recipes.books.map(book => { return (
+                <Link to={`/kirja/${book.id}`}>
+                  <li key={ book.id }>{ book.familyName }</li>
+                </Link>
+                )})
               }
             </ul>
           : 'Loading...'
