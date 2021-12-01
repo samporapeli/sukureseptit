@@ -7,7 +7,9 @@ const TopNav = ({currentUser}) => {
       <nav class="sm:flex items-center justify-between flex-wrap bg-yellow-400 p-6">
       <div class="flex items-center flex-shrink-0 text-black mr-6">
         <span class="font-semibold text-xl tracking-tight">
-          Sukureseptit
+          <Link to='/'>
+            Sukureseptit
+          </Link>
         </span>
       </div>
       <div class="w-full block flex-initial lg:flex-grow lg:items-center lg:w-auto text-sm">
