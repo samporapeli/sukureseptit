@@ -8,7 +8,7 @@ const SideNav = ({ recipes }) => {
         recipes
           ? <ul className='list-disc'>
               { recipes.books.map(book =>
-                <li key={ book.id }>{ book.name }</li>)
+                <li key={ book.id }>{ book.familyName }</li>)
               }
             </ul>
           : 'Loading...'
