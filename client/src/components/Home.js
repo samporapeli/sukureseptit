@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import recipeService from '../services/recipeService'
+import InputRecipeBook from './InputRecipeBook'
 
 const LoggedInView = () => {
   const [ books, setBooks ] = useState(null)
@@ -31,6 +32,7 @@ const LoggedInView = () => {
                     )
                   }
                 </ul>
+                <InputRecipeBook />
               </div>
             </>
       }

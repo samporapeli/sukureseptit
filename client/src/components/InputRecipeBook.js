@@ -6,8 +6,8 @@ const InputRecipeBook = () => {
 
   const [recipeBookData, setRecipeBookData] = useState(
     {
-      familyName: 'Suvun nimi',
-      description: 'Kirjan kuvaus'
+      familyName: '',
+      description: ''
     }
   )
 
@@ -25,16 +25,28 @@ const InputRecipeBook = () => {
 
   return (
     <>
-      <p>InputRecipeBook</p>
+      <h3>Lisää uusi reseptikirja tästä</h3>
       <form onSubmit={addRecipeBook}>
+        <label>
+          Reseptikirjan nimi:   
+        </label>  
         <input
+          type='text'
           value={recipeBookData.familyName}
           onChange={(event) => handleInputChange(event, "familyName")}
+          placeholder='Rapelien Reseptit'
           />
+          <br/>
+          <label>
+          Kirjan kuvaus:   
+          </label>
           <input
+          type='text'
           value={recipeBookData.description}
           onChange={(event) => handleInputChange(event, "description")}
+          placeholder="Keitot ja kastikkeet "
           />
+          <br />
         <button type="submit">tallenna</button>
       </form> 
     </>
