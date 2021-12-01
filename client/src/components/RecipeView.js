@@ -5,6 +5,7 @@ import RecipeBookCover from './RecipeBookCover'
 import SideNav from './SideNav'
 import Comment from './Comment'
 import Recipe from './Recipe'
+import InputRecipe from './InputRecipe'
 
 const LinssikeittoIngredients = [
   {amount: 2, name:"sipuli"},
@@ -35,6 +36,9 @@ const RecipeView = () => {
                   <Route index element={
                     <>
                       <Recipe originalAuthor="Sampo" mealType="Keitto" portions="4" cookingTime="50min" name="Sampon linssikeitto" ingredients={LinssikeittoIngredients} instructions={LinssikeittoInstructions} />
+                      <br />
+                      <InputRecipe />
+                      <br />
                       <Comment authorName="Kalle" commentContent="Juujaa" />
                     </>
                   } />
