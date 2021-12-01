@@ -50,6 +50,17 @@ const BookView = ({ currentUser }) => {
                     <Route index element={
                       <>
                         <RecipeBookCover recipes={recipes} family={family} currentUser={currentUser} />
+                        { recipes
+                          ? <ul>
+                              {recipes.books.find(b => b.id === params.bookID).Recipes.map(r => (
+                                <Link to={`/kirja/${params.bookID}/resepti/${r.id}`}>
+                                  <li key={r.id}>
+                                    {r.name}
+                                  </li>
+                                </Link>))}
+                            </ul>
+                          : 'Ladataan...'
+                        }
                         <h3>Näytä reseptit käyttäjän mukaan</h3>
                         <ul className='list-disc px-6'>
                           {family
