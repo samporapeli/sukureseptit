@@ -36,7 +36,7 @@ This should install everything necessary and start development server,
 both for frontend and backend.
 
 ## Production setup
-TODO
+Set right api base url in client config.js and run `npm run deploy`
 
 ## Component template script
 You can create new components using a bash script.
