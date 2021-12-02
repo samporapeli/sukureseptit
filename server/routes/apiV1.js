@@ -37,6 +37,30 @@ router.post('/book', async (req, res) => {
   }
 })
 
+router.post('/book/:bookID/join', async (req, res) => {
+  try {
+    if (!req.user) throw 'Authentication error'
+    const book = await db.RecipeBook.findOne({
+      where: { id: req.params.bookID }
+    })
+    if (!book) throw 'No book found'
+    await book.addUser(req.user)
+    res.json({
+      status: 'OK',
+    })
+  } catch (e) {
+    console.log(e)
+    const status =
+      (e === 'No book found' || e === 'Authentication error')
+      ? 400
+      : 500
+    res.status(status).json({
+      status: 'error',
+      error: e,
+    })
+  }
+})
+
 router.post('/book/:bookID/recipe', async (req, res) => {
   try {
     const newRecipe = await

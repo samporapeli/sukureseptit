@@ -1,4 +1,5 @@
 const express = require('express')
+const morgan = require('morgan')
 const apiV1 = require('./routes/apiV1')
 const accounts = require('./routes/accounts')
 const middleware = require('./middleware')
@@ -11,6 +12,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(middleware.token)
 app.use(middleware.user)
+app.use(morgan('combined'))
 app.use('/api/v1/accounts', accounts)
 app.use('/api/v1', apiV1)
 
