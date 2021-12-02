@@ -9,6 +9,7 @@ const BookView = ({ currentUser }) => {
   const [ book, setBook ] = useState(null)
   const [ family, setFamily ] = useState(null)
   const [ books, setBooks ] = useState(null)
+  const [ searchTerm, setSearchTerm ] = useState('')
 
   useEffect(async () => {
     const res = await recipeService.books()
@@ -18,7 +19,7 @@ const BookView = ({ currentUser }) => {
   useEffect(async () => {
     const res = await recipeService.book(params.bookID)
     setBook(res.data)
-  }, [])
+  }, [params])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +27,7 @@ const BookView = ({ currentUser }) => {
       setFamily(res.data)
     }
     fetchData()
-  }, [])
+  }, [params])
 
   const copyInviteLink = async () => {
     if (navigator.cliboard) {
@@ -56,17 +57,35 @@ const BookView = ({ currentUser }) => {
                   <Route path='/*'>
                     <Route index element={
                       <>
+                        <Link to={`/kirja/${params.bookID}/uusiresepti`} className='btn btn-green flex items-center justify-center'>Lisää resepti</Link>
                         <RecipeBookCover recipes={book} family={family} currentUser={currentUser} />
+                        <h3>Kirjan reseptit</h3>
                         { book
-                          ? <ul>
-                              {book.Recipes.map(r => (
-                                <Link to={`/kirja/${params.bookID}/resepti/${r.id}`}>
-                                  <li key={r.id}>
-                                    {r.name}
-                                  </li>
-                                </Link>))}
-                            </ul>
-                          : 'Ladataan...'
+                          ? book.Recipes.length > 0
+                            ?
+                              <>
+                                <input type='text' placeholder='hae reseptiä...' onChange={(event) => setSearchTerm(event.target.value.toLowerCase()) } />
+                                <ul>
+                                  {book.Recipes
+                                    .filter(r => {
+                                      const name = r.name.toLowerCase()
+                                      const ingredients = r.Ingredients.map(i => i.name).join(' ').toLowerCase()
+                                      const instructions = r.instructions.toLowerCase()
+                                      return searchTerm.length === 0
+                                        || [ name, ingredients, instructions]
+                                          .join(' ')
+                                          .includes(searchTerm)
+                                    })
+                                    .map(r => (
+                                      <Link to={`/kirja/${params.bookID}/resepti/${r.id}`}>
+                                        <li key={r.id}>
+                                          {r.name}
+                                        </li>
+                                      </Link>))}
+                                </ul>
+                              </>
+                            : <p>Kirjassa ei vielä ole reseptejä. <Link to={`/kirja/${params.bookID}/uusiresepti`}>Luo ensimmäinen klikkaamalla tästä.</Link></p>
+                          : 'Ladataan...' 
                         }
                         <h3>Reseptikirjassa ovat mukana</h3>
                         <ul className='list-disc px-6'>
