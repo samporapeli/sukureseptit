@@ -30,7 +30,7 @@ const books = async () => {
 }
 
 const addComment = async (commentData, recipeID, bookID) => {
-  return await axios.post(`${baseUrl}/api/v1/${bookID}/recipe/${recipeID}/comment`, commentData, loginService.authHeader())
+  return await axios.post(`${baseUrl}/api/v1/book/${bookID}/recipe/${recipeID}/comment`, commentData, loginService.authHeader())
 }
 
 const addRecipe = async (bookID, newRecipe) => {
