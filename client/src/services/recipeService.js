@@ -5,7 +5,7 @@ import loginService from './login'
 const baseUrl = config.apiBaseUrl
 
 const recipes = async () => {
-  const res = await axios.get(`${baseUrl}/api/v1/recipes`)
+  const res = await axios.get(`${baseUrl}/api/v1/recipes`, loginService.authHeader())
   return res
 }
 
@@ -25,8 +25,12 @@ const addRecipeBook = async (newBook) => {
   return await axios.post(`${baseUrl}/api/v1/book`, newBook, loginService.authHeader())
 }
 
+const book = async (bookID) => {
+  return await axios.get(`${baseUrl}/api/v1/book/${bookID}`)
+}
+
 const books = async () => {
-  return await axios.get(`${baseUrl}/api/v1/books`)
+  return await axios.get(`${baseUrl}/api/v1/books`, loginService.authHeader())
 }
 
 const addComment = async (newComment) => {
@@ -56,6 +60,7 @@ export default {
   recipe,
   family,
   books,
+  book,
   addComment,
   addRecipe,
   joinToBook,

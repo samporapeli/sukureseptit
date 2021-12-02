@@ -6,12 +6,18 @@ import SideNav from './SideNav'
 
 const BookView = ({ currentUser }) => {
   const params = useParams()
-  const [ recipes, setRecipes ] = useState(null)
+  const [ book, setBook ] = useState(null)
   const [ family, setFamily ] = useState(null)
+  const [ books, setBooks ] = useState(null)
 
   useEffect(async () => {
-    const res = await recipeService.recipes()
-    setRecipes(res.data)
+    const res = await recipeService.books()
+    setBooks(res.data.books)
+  }, [])
+
+  useEffect(async () => {
+    const res = await recipeService.book(params.bookID)
+    setBook(res.data)
   }, [])
 
   useEffect(() => {
@@ -40,20 +46,20 @@ const BookView = ({ currentUser }) => {
     
     <>
       {
-        ! recipes
+        ! book
           ? 'Loading...'
           :
             <>
-              <SideNav recipes={recipes} />
+              <SideNav recipes={books} />
               <div className='container px-10 mx-auto'>
                 <Routes>
                   <Route path='/*'>
                     <Route index element={
                       <>
-                        <RecipeBookCover recipes={recipes} family={family} currentUser={currentUser} />
-                        { recipes
+                        <RecipeBookCover recipes={book} family={family} currentUser={currentUser} />
+                        { book
                           ? <ul>
-                              {recipes.books.find(b => b.id === params.bookID).Recipes.map(r => (
+                              {book.Recipes.map(r => (
                                 <Link to={`/kirja/${params.bookID}/resepti/${r.id}`}>
                                   <li key={r.id}>
                                     {r.name}
@@ -76,7 +82,7 @@ const BookView = ({ currentUser }) => {
                           Kopioi rekisteröitymislinkki
                         </button>
                         <p>Salaisen kirjalinkin kautta sukulaisesi saavat oikeuden tarkastella reseptikirjaa ja rekisteröitymisen jälkeen lisätä omia reseptejään.</p>
-                        { currentUser && recipes && !recipes.books.map(b => b.id).includes(params.bookID)
+                        { currentUser && book && books && !books.map(b => b.id).includes(book.id)
                           ? <button className='btn btn-green' onClick={ joinToBook }>Liity suvun reseptikirjaan</button>
                           : <></>
                         } { currentUser ? <></> :
