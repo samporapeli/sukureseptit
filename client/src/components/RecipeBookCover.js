@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import React from 'react'
+import { useParams } from 'react-router-dom'
 import '../styles/RecipeBookCover.scss'
 
 const RecipeBookCover = ({ recipes, family, currentUser }) => {
