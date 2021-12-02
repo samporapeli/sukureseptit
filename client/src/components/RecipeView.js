@@ -3,6 +3,7 @@ import { Routes, Route, useParams } from 'react-router-dom'
 import recipeService from '../services/recipeService'
 import Comment from './Comment'
 import Recipe from './Recipe'
+import InputComment from './InputComment'
 
 const RecipeView = () => {
   const params = useParams()
@@ -27,6 +28,7 @@ const RecipeView = () => {
                       <Recipe recipe={recipe} />
                       <br/>
                       <Comment authorName="Kalle" commentContent="Juujaa" />
+                      <InputComment />
                     </>
                   } />
                   <Route path='edit' element={<h1>TODO: edit view</h1>} />
