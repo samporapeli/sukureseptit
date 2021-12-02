@@ -32,7 +32,8 @@ const BookView = ({ currentUser }) => {
   }
 
   const joinToBook = async () => {
-    alert('not yet implemented')
+    const res = await recipeService.joinToBook(params.bookID)
+    if (res.status !== 200) alert(`Error: ${res}`)
   }
 
   return (
@@ -75,9 +76,11 @@ const BookView = ({ currentUser }) => {
                           Kopioi rekisteröitymislinkki
                         </button>
                         <p>Salaisen kirjalinkin kautta sukulaisesi saavat oikeuden tarkastella reseptikirjaa ja rekisteröitymisen jälkeen lisätä omia reseptejään.</p>
-                        { currentUser 
+                        { currentUser && recipes && !recipes.books.map(b => b.id).includes(params.bookID)
                           ? <button className='btn btn-green' onClick={ joinToBook }>Liity suvun reseptikirjaan</button>
-                          : <button className='btn btn-green'><Link to='/'>Rekisteröidy lisätäksesi reseptejä</Link></button>
+                          : <></>
+                        } { currentUser ? <></> :
+                          <button className='btn btn-green'><Link to='/'>Rekisteröidy lisätäksesi reseptejä</Link></button>
                         }
 
                       </>

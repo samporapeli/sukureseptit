@@ -1,5 +1,6 @@
 import axios from 'axios'
 import config from '../config'
+import loginService from './login'
 
 const baseUrl = config.apiBaseUrl
 
@@ -28,10 +29,23 @@ const addRecipe = async (bookID, newRecipe) => {
   return await axios.post(`${baseUrl}/api/v1/book/${bookID}/recipe`, newRecipe)
 }
 
+const joinToBook = async (bookID) => {
+  try {
+    return await axios
+      .post(`${baseUrl}/api/v1/book/${bookID}/join`,
+        {},
+        loginService.authHeader()
+      )
+  } catch (e) {
+    return e
+  }
+}
+
 export default {
   recipes,
   recipe,
   family,
   books,
   addRecipe,
+  joinToBook,
 }
