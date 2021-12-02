@@ -24,7 +24,7 @@ router.get('/book/:bookID', async (req, res) => {
   res.json(
     await db.RecipeBook.findOne({
       where: { id: req.params.bookID },
-      include: [db.Recipe],
+      include: [{ model: db.Recipe, include: [db.Ingredient] }],
     })
   )
 })

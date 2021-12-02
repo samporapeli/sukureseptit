@@ -9,6 +9,7 @@ const BookView = ({ currentUser }) => {
   const [ book, setBook ] = useState(null)
   const [ family, setFamily ] = useState(null)
   const [ books, setBooks ] = useState(null)
+  const [ searchTerm, setSearchTerm ] = useState('')
 
   useEffect(async () => {
     const res = await recipeService.books()
@@ -62,14 +63,27 @@ const BookView = ({ currentUser }) => {
                         { book
                           ? book.Recipes.length > 0
                             ?
-                              <ul>
-                                {book.Recipes.map(r => (
-                                  <Link to={`/kirja/${params.bookID}/resepti/${r.id}`}>
-                                    <li key={r.id}>
-                                      {r.name}
-                                    </li>
-                                  </Link>))}
-                              </ul>
+                              <>
+                                <input type='text' placeholder='hae reseptiä...' onChange={(event) => setSearchTerm(event.target.value.toLowerCase()) } />
+                                <ul>
+                                  {book.Recipes
+                                    .filter(r => {
+                                      const name = r.name.toLowerCase()
+                                      const ingredients = r.Ingredients.map(i => i.name).join(' ').toLowerCase()
+                                      const instructions = r.instructions.toLowerCase()
+                                      return searchTerm.length === 0
+                                        || [ name, ingredients, instructions]
+                                          .join(' ')
+                                          .includes(searchTerm)
+                                    })
+                                    .map(r => (
+                                      <Link to={`/kirja/${params.bookID}/resepti/${r.id}`}>
+                                        <li key={r.id}>
+                                          {r.name}
+                                        </li>
+                                      </Link>))}
+                                </ul>
+                              </>
                             : <p>Kirjassa ei vielä ole reseptejä. <Link to={`/kirja/${params.bookID}/uusiresepti`}>Luo ensimmäinen klikkaamalla tästä.</Link></p>
                           : 'Ladataan...' 
                         }
