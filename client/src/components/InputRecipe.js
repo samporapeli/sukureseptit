@@ -48,6 +48,11 @@ const InputRecipe = () => {
     const newState = [...ingredientList]
     newState.push(ingredient)
     setIngredientList(newState)
+    setIngredient({
+      amount: '',
+      unit: '',
+      name: '',
+    })
   }
 
   const addRecipe = async (event) => {
@@ -55,6 +60,7 @@ const InputRecipe = () => {
     try{
         const fullRecipeData = {...recipeData}
         fullRecipeData.ingredients = ingredientList
+        
         const res = await recipeService.addRecipe(params.bookID, fullRecipeData)
         console.log(res)
         setRecipeUrl(`/kirja/${params.bookID}/resepti/${res.data.created.id}`)
@@ -116,22 +122,30 @@ const InputRecipe = () => {
         </div>
         <div>
           <h4>Ainesosat</h4>
+          {ingredientList ? ingredientList.map( ingredient => { return (
+                <p>{ingredient.amount} {ingredient.unit} {ingredient.name}</p>
+                )})
+                :
+                <></>}
           <label> Määrä: </label>
           <input
             type='number'
             placeholder="2"
+            value={ingredient.amount}
             onChange={(event) => handleIngredientInputChange(event, "amount")}
           />
           <label> yksikkö: </label>
           <input
             type='text'
             placeholder="rkl"
+            value={ingredient.unit}
             onChange={(event) => handleIngredientInputChange(event, "unit")}
           />
           <label> ainesosa: </label>
           <input
             type='text'
             placeholder="mustapippuria"
+            value={ingredient.name}
             onChange={(event) => handleIngredientInputChange(event, "name")}
           />
           <button onClick={addIngredient} className="btn btn-green"> Lisää ainesosa</button>
