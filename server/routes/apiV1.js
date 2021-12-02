@@ -119,7 +119,7 @@ router.post('/book/:bookID/recipe/:id/comment', async (req, res) => {
       comment: req.body.comment,
       picture: null,
     })
-    await newComment.addUser(req.user)
+    await newComment.setUser(req.user)
     res.json({
       status: 'OK',
       created: newComment,
