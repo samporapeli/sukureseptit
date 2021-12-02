@@ -20,7 +20,7 @@ const RecipeView = () => {
 
   useEffect(async () => {
     const res = await recipeService.recipe(params.bookID, params.recipeID)
-    await setRecipe(res.data.recipe)
+    setRecipe(res.data.recipe)
   }, [])
 
   return (
