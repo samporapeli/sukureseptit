@@ -1,18 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Routes, Route, useParams } from 'react-router-dom'
 import recipeService from '../services/recipeService'
-import RecipeBookCover from './RecipeBookCover'
-import SideNav from './SideNav'
 import Comment from './Comment'
 import Recipe from './Recipe'
-
-const LinssikeittoIngredients = [
-  {amount: 2, name:"sipuli"},
-  {amount: "pari", unit:"rkl", name:"suola"},
-  {amount: 1, unit:"tlk", name:"chilitomaattimurskaa"}
-]
-
-const LinssikeittoInstructions = "Huuhdo linssit. Kuullota sipulit öljyssä kattilan pohjalla. Lisää vesi ja tomaattimurskat. Anna kiehua hetken ajan ja lisää linssit. Anna kiehua noin puoli tuntia ja lisää kerma. Anna vielä hautua 5-10 minuuttia ennen tarjoilua."
 
 const RecipeView = () => {
   const params = useParams()
@@ -20,7 +10,7 @@ const RecipeView = () => {
 
   useEffect(async () => {
     const res = await recipeService.recipe(params.bookID, params.recipeID)
-    setRecipe(res.data.recipe)
+    await setRecipe(res.data.recipe)
   }, [])
 
   return (
@@ -35,6 +25,7 @@ const RecipeView = () => {
                   <Route index element={
                     <>
                       <Recipe recipe={recipe} />
+                      <br/>
                       <Comment authorName="Kalle" commentContent="Juujaa" />
                     </>
                   } />
