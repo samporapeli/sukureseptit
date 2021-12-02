@@ -22,7 +22,7 @@ const family = async () => {
 }
 
 const addRecipeBook = async (newBook) => {
-  return await axios.post(`${baseUrl}/api/v1/book`, newBook)
+  return await axios.post(`${baseUrl}/api/v1/book`, newBook, loginService.authHeader())
 }
 
 const books = async () => {
