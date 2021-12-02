@@ -4,14 +4,29 @@ const db = require('../models/index')
 
 router.get('/book/:bookID/recipes', async (req, res) => {
   res.json({
-    books: await db.RecipeBook.findAll({ include: [db.Recipe] })
+    books: await db.RecipeBook.findOne({
+      where: {
+        id: req.params.bookID
+      }},
+      {
+        include: [db.Recipe]
+      })
   })
 })
 
 router.get('/recipes', async (req, res) => {
   res.json({
-    books: await db.RecipeBook.findAll({ include: [db.Recipe] })
+    books: await req.user.getRecipeBooks({ include: [db.Recipe] })
   })
+})
+
+router.get('/book/:bookID', async (req, res) => {
+  res.json(
+    await db.RecipeBook.findOne({
+      where: { id: req.params.bookID },
+      include: [db.Recipe],
+    })
+  )
 })
 
 router.post('/book', async (req, res) => {
@@ -97,14 +112,14 @@ router.get('/book/:bookID/recipe/:id', async (req, res) => {
 
 router.post('/book/:bookID/recipe/:id/comment', async (req, res) => {
   try {
-    console.log(req.body)
+    if (!req.user) throw 'Authentication error'
     const newComment = await (await db.Recipe.findOne({
       where: { id: req.params.id } 
     })).createRecipeComment({
       comment: req.body.comment,
       picture: null,
     })
-    // TODO: associate user with the comment
+    await newComment.addUser(req.user)
     res.json({
       status: 'OK',
       created: newComment,
@@ -117,15 +132,15 @@ router.post('/book/:bookID/recipe/:id/comment', async (req, res) => {
   }
 })
 
-router.get('/family', async (req, res) => {
+router.get('/book/:bookID/members', async (req, res) => {
   res.json({
-    members: (await db.User.findAll()).map(m => m.toJson())
+    members: (await (await db.RecipeBook.findOne({ where: { id: req.params.bookID } })).getUsers()).map(m => m.toJson())
   })
 })
 
 router.get('/books', async (req, res) => {
   res.json({
-    books: (await db.RecipeBook.findAll({ include: [db.Recipe, db.User] }))
+    books: (await req.user.getRecipeBooks({ include: [db.Recipe, db.User] }))
   })
 })
 

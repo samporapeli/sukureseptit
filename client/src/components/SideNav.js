@@ -9,7 +9,7 @@ const SideNav = ({ recipes }) => {
       {
         recipes
           ? <ul className='list-disc'>
-              { recipes.books.map(book => { return (
+              { recipes.map(book => { return (
                 <Link to={`/kirja/${book.id}`}>
                   <li key={ book.id }>{ book.familyName }</li>
                 </Link>

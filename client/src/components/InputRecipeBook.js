@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Navigate } from 'react-router-dom'
 import recipeService from '../services/recipeService'
 
 
@@ -10,14 +11,19 @@ const InputRecipeBook = () => {
       description: ''
     }
   )
+  const [ created, setCreated ] = useState('')
 
-  const addRecipeBook = (event) => {
+  const addRecipeBook = async (event) => {
     event.preventDefault()
-    recipeService.addRecipeBook(recipeBookData)
+    try {
+      const res = await recipeService.addRecipeBook(recipeBookData)
+      setCreated(res.data.newBook.id)
+    } catch (e) {
+      alert(e)
+    }
   }
 
   const handleInputChange = (event, key) => {
-    console.log(event.target.value)
     const newState = {...recipeBookData}
     newState[key] = event.target.value
     setRecipeBookData(newState)
@@ -52,6 +58,7 @@ const InputRecipeBook = () => {
           </div>
         <button className=" ml-4 btn text-black btn-green" type="submit">tallenna</button>
       </form> 
+      { created ? <Navigate to={`/kirja/${created}`} /> : <></>}
     </>
   )
 }
