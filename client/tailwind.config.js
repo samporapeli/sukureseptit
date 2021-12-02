@@ -8,7 +8,16 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "ruskee": "#6D3D14",
+        "vihree": "#337357",
+        "kulta": "#D58936",
+        "beige": "#BA9593", 
+        "valkoinen": "#F4F3EE"
+
+      }
+    },
     fontFamily: {
       Castoro: ["Castoro, sans-serif" ],
     },
