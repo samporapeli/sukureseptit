@@ -26,7 +26,8 @@ const books = async () => {
 }
 
 const addComment = async (newComment) => {
-  return await axios.post(`${baseUrl}/api/v1/book`, newComment)
+  // TODO: change url to format [...]/book/${bookID}/recipe/${recipeID}/comment
+  return await axios.post(`${baseUrl}/api/v1/book`, newComment, loginService.authHeader())
 }
 
 const addRecipe = async (bookID, newRecipe) => {
