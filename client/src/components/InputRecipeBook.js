@@ -33,27 +33,30 @@ const InputRecipeBook = () => {
     <>
       <h3>Lisää uusi reseptikirja tästä</h3>
       <form onSubmit={addRecipeBook}>
+        <div className="grid gap-4 grid-cols-none ml-4">
         <label>
           Reseptikirjan nimi:   
         </label>  
         <input
+          className="p-4"
           type='text'
           value={recipeBookData.familyName}
           onChange={(event) => handleInputChange(event, "familyName")}
           placeholder='Rapelien Reseptit'
           />
-          <br/>
           <label>
           Kirjan kuvaus:   
           </label>
           <input
+          className="p-4"
           type='text'
           value={recipeBookData.description}
           onChange={(event) => handleInputChange(event, "description")}
           placeholder="Keitot ja kastikkeet "
           />
           <br />
-        <button type="submit">tallenna</button>
+          </div>
+        <button className=" ml-4 btn text-black btn-green" type="submit">tallenna</button>
       </form> 
       { created ? <Navigate to={`/kirja/${created}`} /> : <></>}
     </>

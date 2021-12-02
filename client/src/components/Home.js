@@ -21,14 +21,14 @@ const LoggedInView = () => {
             <>
               <div className=''>
                 <h2>Reseptikirjasi</h2>
-                <ul>
+                <ul className="grid grid-cols-3 gap-4">
                   {
                     books.map(book =>
-                        <li key={book.id}>
-                          <Link to={'/kirja/' + book.id}>
+                      <Link className="flex-1 border-4 hover:bg-ruskee hover:text-white border-ruskee bg-none text-center p-10 rounded-lg" to={'/kirja/' + book.id}>
+                        <li className="text-center center" key={book.id}>
                             {book.familyName}
-                          </Link>
                         </li>
+                        </Link>
                     )
                   }
                 </ul>
