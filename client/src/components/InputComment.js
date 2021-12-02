@@ -1,18 +1,26 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import recipeService from '../services/recipeService'
 
 
 const InputComment = () => {
-
+  const params = useParams()
+  console.log(params.bookID)
+  console.log(params.recipeID)
   const [commentData, setCommentData] = useState(
     {
       comment: '',
     }
   )
 
-  const addComment = (event) => {
+  const addComment = async (event) => {
     event.preventDefault()
-    recipeService.addComment(commentData)
+    try{
+      const res = await recipeService.addComment(commentData, params.recipeID, params.bookID)
+      console.log(res)
+    } catch (e) {
+      alert(e)
+    }
   }
 
   const handleInputChange = (event, key) => {
