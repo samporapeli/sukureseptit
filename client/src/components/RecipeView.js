@@ -16,17 +16,17 @@ const LinssikeittoInstructions = "Huuhdo linssit. Kuullota sipulit öljyssä kat
 
 const RecipeView = () => {
   const params = useParams()
-  const [ recipes, setRecipes ] = useState(null)
+  const [ recipe, setRecipe ] = useState(null)
 
   useEffect(async () => {
-    const res = await recipeService.recipes()
-    setRecipes(res.data)
+    const res = await recipeService.recipe(params.bookID, params.recipeID)
+    setRecipe(res.data.recipe)
   }, [])
 
   return (
     <>
       {
-        ! recipes
+        ! recipe
           ? 'Loading...'
           :
             <>
@@ -34,7 +34,7 @@ const RecipeView = () => {
                 <Route path=''>
                   <Route index element={
                     <>
-                      <Recipe originalAuthor="Sampo" mealType="Keitto" portions="4" cookingTime="50min" name="Sampon linssikeitto" ingredients={LinssikeittoIngredients} instructions={LinssikeittoInstructions} />
+                      <Recipe recipe={recipe} />
                       <Comment authorName="Kalle" commentContent="Juujaa" />
                     </>
                   } />

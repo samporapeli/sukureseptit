@@ -8,6 +8,14 @@ const recipes = async () => {
   return res
 }
 
+const recipe = async (bookID, recipeID) => {
+  try {
+    return await axios.get(`${baseUrl}/api/v1/book/${bookID}/recipe/${recipeID}`)
+  } catch (e) {
+    return e
+  }
+}
+
 const family = async () => {
   return await axios.get(`${baseUrl}/api/v1/family`)
 }
@@ -18,6 +26,7 @@ const books = async () => {
 
 export default {
   recipes,
+  recipe,
   family,
   books,
 }

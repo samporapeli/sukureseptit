@@ -1,17 +1,17 @@
 import React from 'react'
 
-const Recipe = ({ originalAuthor, mealType, name, portions, cookingTime, ingredients, instructions }) => {
+const Recipe = ({ recipe }) => {
   return (
     <>
       <div className="RecipePage">
-        <p>{originalAuthor} · {mealType}</p>
-        <h2>{name}</h2>
-        <p>{portions} portions</p>
-        <p>Cooking time: {cookingTime}</p>
-        <ul>{ingredients.map(({amount, name, unit}) => (
+        <p>{recipe.user} · {recipe.mealType}</p>
+        <h2>{recipe.name}</h2>
+        <p>{recipe.portions} portions</p>
+        <p>Cooking time: {recipe.cookingTime}</p>
+        <ul>{recipe.Ingredients.map(({amount, name, unit}) => (
           <li key={name}>{amount} {unit} {name}</li>
         ))}</ul>
-        <p>{instructions}</p>
+        <p>{recipe.instructions}</p>
       </div>
     </>
   )
