@@ -18,7 +18,7 @@ const BookView = ({ currentUser }) => {
   useEffect(async () => {
     const res = await recipeService.book(params.bookID)
     setBook(res.data)
-  }, [])
+  }, [params])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +26,7 @@ const BookView = ({ currentUser }) => {
       setFamily(res.data)
     }
     fetchData()
-  }, [])
+  }, [params])
 
   const copyInviteLink = async () => {
     if (navigator.cliboard) {
