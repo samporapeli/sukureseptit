@@ -37,8 +37,6 @@ const RecipeView = () => {
                     <>
                       <Recipe recipe={recipe} />
                       <br/>
-                      <InputRecipe />
-                      <br/>
                       <Comment authorName="Kalle" commentContent="Juujaa" />
                     </>
                   } />

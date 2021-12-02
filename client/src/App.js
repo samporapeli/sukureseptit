@@ -8,6 +8,7 @@ import Home from './components/Home'
 import Profile from './components/Profile'
 import LoggedOutView from './components/LoggedOutView'
 import loginService from './services/login'
+import CreateRecipeView from './components/CreateRecipeView'
 
 const App = () => {
   const [ currentUser, setCurrentUser ] = useState(null)
@@ -43,6 +44,7 @@ const App = () => {
             <Route path='koti/*' element={<Home />} />
             <Route path='kirja/:bookID' element={<BookView currentUser={currentUser} />} />
             <Route path='kirja/:bookID/resepti/:recipeID' element={<RecipeView />} />
+            <Route path='kirja/:bookID/uusiresepti' element={<CreateRecipeView />} />
           </Route>
         </Routes>
         <Footer />
