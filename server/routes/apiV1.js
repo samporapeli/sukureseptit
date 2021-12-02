@@ -4,14 +4,29 @@ const db = require('../models/index')
 
 router.get('/book/:bookID/recipes', async (req, res) => {
   res.json({
-    books: await db.RecipeBook.findAll({ include: [db.Recipe] })
+    books: await db.RecipeBook.findOne({
+      where: {
+        id: req.params.bookID
+      }},
+      {
+        include: [db.Recipe]
+      })
   })
 })
 
 router.get('/recipes', async (req, res) => {
   res.json({
-    books: await db.RecipeBook.findAll({ include: [db.Recipe] })
+    books: await req.user.getRecipeBooks({ include: [db.Recipe] })
   })
+})
+
+router.get('/book/:bookID', async (req, res) => {
+  res.json(
+    await db.RecipeBook.findOne({
+      where: { id: req.params.bookID },
+      include: [db.Recipe],
+    })
+  )
 })
 
 router.post('/book', async (req, res) => {
@@ -125,7 +140,7 @@ router.get('/family', async (req, res) => {
 
 router.get('/books', async (req, res) => {
   res.json({
-    books: (await db.RecipeBook.findAll({ include: [db.Recipe, db.User] }))
+    books: (await req.user.getRecipeBooks({ include: [db.Recipe, db.User] }))
   })
 })
 

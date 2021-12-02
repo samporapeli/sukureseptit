@@ -10,13 +10,13 @@ const RecipeBookCover = ({ recipes, family, currentUser }) => {
       <div className="recipe-book-cover">
         <h2 className='flex items-center justify-center'>
           { recipes
-            ? recipes.books.find(b => b.id === params.bookID).familyName
+            ? recipes.familyName
             : 'Ladataan...'
           }
         </h2>
         <h3 className='flex items-center justify-center'>
           { recipes
-            ? recipes.books.find(b => b.id === params.bookID).description
+            ? recipes.description
             : 'Ladataan...'
           }
         </h3>
