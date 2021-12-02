@@ -13,13 +13,13 @@ const LoggedInView = () => {
 
   return (
     <>
-      <h1>Sukureseptit</h1>
+    <div className="font-Castoro container">
       {
         ! books
           ? 'Loading...'
           :
             <>
-              <div className='container px-10 mx-auto'>
+              <div className=''>
                 <h2>Reseptikirjasi</h2>
                 <ul>
                   {
@@ -36,6 +36,7 @@ const LoggedInView = () => {
               </div>
             </>
       }
+      </div>
     </>
   )
 }

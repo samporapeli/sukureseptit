@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom'
 const SideNav = ({ recipes }) => {
   return (
     <>
-      <p>SideNav</p>
+      <div className="container font-Castoro">
+      <h5>Kaikki kirjasi</h5>
       {
         recipes
           ? <ul className='list-disc'>
@@ -17,6 +18,7 @@ const SideNav = ({ recipes }) => {
             </ul>
           : 'Loading...'
       }
+      </div>
     </>
   )
 }
