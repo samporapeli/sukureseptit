@@ -17,8 +17,8 @@ const recipe = async (bookID, recipeID) => {
   }
 }
 
-const family = async () => {
-  return await axios.get(`${baseUrl}/api/v1/family`)
+const family = async (bookID) => {
+  return await axios.get(`${baseUrl}/api/v1/book/${bookID}/members`)
 }
 
 const addRecipeBook = async (newBook) => {

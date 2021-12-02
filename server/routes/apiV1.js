@@ -132,9 +132,9 @@ router.post('/book/:bookID/recipe/:id/comment', async (req, res) => {
   }
 })
 
-router.get('/family', async (req, res) => {
+router.get('/book/:bookID/members', async (req, res) => {
   res.json({
-    members: (await db.User.findAll()).map(m => m.toJson())
+    members: (await (await db.RecipeBook.findOne({ where: { id: req.params.bookID } })).getUsers()).map(m => m.toJson())
   })
 })
 

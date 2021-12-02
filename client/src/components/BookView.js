@@ -22,7 +22,7 @@ const BookView = ({ currentUser }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await recipeService.family()
+      const res = await recipeService.family(params.bookID)
       setFamily(res.data)
     }
     fetchData()
