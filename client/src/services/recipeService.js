@@ -21,6 +21,10 @@ const family = async () => {
   return await axios.get(`${baseUrl}/api/v1/family`)
 }
 
+const addRecipeBook = async (newBook) => {
+  return await axios.post(`${baseUrl}/api/v1/book`, newBook, loginService.authHeader())
+}
+
 const books = async () => {
   return await axios.get(`${baseUrl}/api/v1/books`)
 }
@@ -47,6 +51,7 @@ const joinToBook = async (bookID) => {
 }
 
 export default {
+  addRecipeBook,
   recipes,
   recipe,
   family,
