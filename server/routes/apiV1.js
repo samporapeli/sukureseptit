@@ -97,14 +97,14 @@ router.get('/book/:bookID/recipe/:id', async (req, res) => {
 
 router.post('/book/:bookID/recipe/:id/comment', async (req, res) => {
   try {
-    console.log(req.body)
+    if (!req.user) throw 'Authentication error'
     const newComment = await (await db.Recipe.findOne({
       where: { id: req.params.id } 
     })).createRecipeComment({
       comment: req.body.comment,
       picture: null,
     })
-    // TODO: associate user with the comment
+    await newComment.addUser(req.user)
     res.json({
       status: 'OK',
       created: newComment,
