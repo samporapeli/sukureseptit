@@ -56,17 +56,22 @@ const BookView = ({ currentUser }) => {
                   <Route path='/*'>
                     <Route index element={
                       <>
+                        <Link to={`/kirja/${params.bookID}/uusiresepti`} className='btn btn-green flex items-center justify-center'>Lisää resepti</Link>
                         <RecipeBookCover recipes={book} family={family} currentUser={currentUser} />
+                        <h3>Kirjan reseptit</h3>
                         { book
-                          ? <ul>
-                              {book.Recipes.map(r => (
-                                <Link to={`/kirja/${params.bookID}/resepti/${r.id}`}>
-                                  <li key={r.id}>
-                                    {r.name}
-                                  </li>
-                                </Link>))}
-                            </ul>
-                          : 'Ladataan...'
+                          ? book.Recipes.length > 0
+                            ?
+                              <ul>
+                                {book.Recipes.map(r => (
+                                  <Link to={`/kirja/${params.bookID}/resepti/${r.id}`}>
+                                    <li key={r.id}>
+                                      {r.name}
+                                    </li>
+                                  </Link>))}
+                              </ul>
+                            : <p>Kirjassa ei vielä ole reseptejä. <Link to={`/kirja/${params.bookID}/uusiresepti`}>Luo ensimmäinen klikkaamalla tästä.</Link></p>
+                          : 'Ladataan...' 
                         }
                         <h3>Reseptikirjassa ovat mukana</h3>
                         <ul className='list-disc px-6'>
