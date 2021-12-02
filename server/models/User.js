@@ -34,6 +34,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     }, 
   }, {
+    scopes: {
+      basic: {
+        attributes: { exclude: ['passwordHash', 'email', 'createdAt', 'updatedAt'] },
+      },
+    },
     sequelize,
     modelName: 'User',
   })

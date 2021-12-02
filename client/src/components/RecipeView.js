@@ -17,11 +17,12 @@ const LinssikeittoInstructions = "Huuhdo linssit. Kuullota sipulit öljyssä kat
 const RecipeView = () => {
   const params = useParams()
   const [ recipe, setRecipe ] = useState(null)
+  const [ commentTrigger, setCommentTrigger ] = useState(false)
 
   useEffect(async () => {
     const res = await recipeService.recipe(params.bookID, params.recipeID)
     setRecipe(res.data.recipe)
-  }, [])
+  }, [commentTrigger])
 
   return (
     <>
@@ -37,8 +38,13 @@ const RecipeView = () => {
                     <div className="container font-Castoro">
                       <Recipe recipe={recipe} />
                       <br/>
-                      <Comment authorName="Kalle" commentContent="Juujaa" />
-                      <InputComment />
+                      { recipe.RecipeComments
+                        .sort((a, b) => a.createdAt.localeCompare(b.createdAt))
+                        .map(c =>
+                          <Comment key={c.id} authorName={c.User.firstName} commentContent={c.comment} />
+                        )
+                      }
+                      <InputComment setCommentTrigger={setCommentTrigger} />
                     </div>
                     </>
                   } />
