@@ -68,7 +68,7 @@ const BookView = ({ currentUser }) => {
                             </ul>
                           : 'Ladataan...'
                         }
-                        <h3>Näytä reseptit käyttäjän mukaan</h3>
+                        <h3>Reseptikirjassa ovat mukana</h3>
                         <ul className='list-disc px-6'>
                           {family
                           ? family.members.map(member =>
