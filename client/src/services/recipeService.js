@@ -16,8 +16,8 @@ const books = async () => {
   return await axios.get(`${baseUrl}/api/v1/books`)
 }
 
-const addRecipe = async (newRecipe) => {
-  return await axios.post(`${baseUrl}/api/v1/recipe`, newRecipe)
+const addRecipe = async (bookID, newRecipe) => {
+  return await axios.post(`${baseUrl}/api/v1/book/${bookID}/recipe`, newRecipe)
 }
 
 export default {

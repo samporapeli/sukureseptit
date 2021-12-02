@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import { useParams, Navigate } from 'react-router-dom'
 import recipeService from '../services/recipeService'
 
 
 const InputRecipe = () => {
+  const params = useParams()
 
   const [recipeData, setRecipeData] = useState(
     {
@@ -14,9 +16,54 @@ const InputRecipe = () => {
     }
   )
 
-  const addRecipe = (event) => {
+  const [ingredientList, setIngredientList] = useState(
+    [
+      // {
+      //   amount: '',
+      //   unit: '',
+      //   name: '',
+      // }
+    ]
+  )
+
+  const [ingredient, setIngredient] = useState({
+    amount: '',
+    unit: '',
+    name: '',
+  })
+
+  const [recipeUrl, setRecipeUrl] = useState(
+    ''
+  )
+
+  const handleIngredientInputChange = (event, key) => {
+    console.log(event.target.value)
+    const newState = {...ingredient}
+    newState[key] = event.target.value
+    setIngredient(newState)
+  }
+
+  const addIngredient = (event) => {
     event.preventDefault()
-    recipeService.addRecipe(recipeData)
+    const newState = [...ingredientList]
+    newState.push(ingredient)
+    setIngredientList(newState)
+  }
+
+  const addRecipe = async (event) => {
+    event.preventDefault()
+    try{
+        const fullRecipeData = {...recipeData}
+        fullRecipeData.ingredients = ingredientList
+        const res = await recipeService.addRecipe(params.bookID, fullRecipeData)
+        console.log(res)
+        setRecipeUrl(`/kirja/${params.bookID}/resepti/${res.data.created.id}`)
+        // <Navigate to={`/kirja/${params.bookID}/resepti/${res.data.created.id}`}/>
+      } catch (e) {
+        alert(e)
+      }
+    
+
   }
 
   const handleInputChange = (event, key) => {
@@ -25,6 +72,8 @@ const InputRecipe = () => {
     newState[key] = event.target.value
     setRecipeData(newState)
   }
+
+
 
   return (
     <>
@@ -67,27 +116,25 @@ const InputRecipe = () => {
         </div>
         <div>
           <h4>Ainesosat</h4>
-          <label> Määrä ja ainesosa: </label>
-          <input
-            type='text'
-            placeholder="1rkl mustapippuria"
-          />
-          <br />
           <label> Määrä: </label>
           <input
             type='number'
             placeholder="2"
+            onChange={(event) => handleIngredientInputChange(event, "amount")}
           />
           <label> yksikkö: </label>
           <input
             type='text'
             placeholder="rkl"
+            onChange={(event) => handleIngredientInputChange(event, "unit")}
           />
           <label> ainesosa: </label>
           <input
             type='text'
             placeholder="mustapippuria"
+            onChange={(event) => handleIngredientInputChange(event, "name")}
           />
+          <button onClick={addIngredient} className="btn btn-green"> Lisää ainesosa</button>
         </div>
         <div>
           <h4>Ohjeet</h4>
@@ -96,7 +143,8 @@ const InputRecipe = () => {
             placeholder="Kerro mitä välivaiheita reseptin käyttämiseen kuuluu"></textarea>
         </div>
         <button className="btn btn-green" type="submit">tallenna resepti</button>
-      </form> 
+      </form>
+      {recipeUrl ? <Navigate to={recipeUrl}/> : <></> }
     </>
   )
 }
