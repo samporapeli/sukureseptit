@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom'
 import Header from './components/Header'
-import Footer from './components/Footer'
 import BookView from './components/BookView'
 import RecipeView from './components/RecipeView'
 import Home from './components/Home'
@@ -9,9 +8,11 @@ import Profile from './components/Profile'
 import LoggedOutView from './components/LoggedOutView'
 import loginService from './services/login'
 import CreateRecipeView from './components/CreateRecipeView'
+import ChooseBook from './components/ChooseBook'
 
 const App = () => {
   const [ currentUser, setCurrentUser ] = useState(null)
+  const params = useParams()
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -30,9 +31,10 @@ const App = () => {
   return (
     <>
       <Router>
-        <Header currentUser={currentUser} />
+      <Header currentUser={currentUser} bookID={params.bookID} />
         <Routes>
           <Route path='/'>
+ 
             <Route
               index
               element={ <LoggedOutView currentUser={currentUser} setCurrentUser={setCurrentUser} /> }
@@ -42,12 +44,12 @@ const App = () => {
               element={<Profile currentUser={currentUser} setCurrentUser={setCurrentUser} />}
             />
             <Route path='koti/*' element={<Home />} />
-            <Route path='kirja/:bookID' element={<BookView currentUser={currentUser} />} />
-            <Route path='kirja/:bookID/resepti/:recipeID' element={<RecipeView />} />
+            <Route path='kirja/:bookID/*' element={<BookView currentUser={currentUser} />} />
+            <Route path='kirja/:bookID/resepti/:recipeID/*' element={<RecipeView />} />
             <Route path='kirja/:bookID/uusiresepti' element={<CreateRecipeView />} />
+            <Route path='uusiresepti/*' element={<ChooseBook currentUser={currentUser} />}/>
           </Route>
         </Routes>
-        <Footer />
       </Router>
     </>
   )
