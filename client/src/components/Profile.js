@@ -11,6 +11,7 @@ const Profile = ({ currentUser, setCurrentUser }) => {
   if (currentUser) {
     return (
       <>
+      <div className="container font-Castoro">
         <h2>{ currentUser.firstName + ' ' + currentUser.lastName }</h2>
         <p>Etunimi: { currentUser.firstName }</p>
         <p>Sukunimi: { currentUser.lastName }</p>
@@ -19,6 +20,7 @@ const Profile = ({ currentUser, setCurrentUser }) => {
         </a></p>
         <p>Omat reseptikirjasi löydät <Link to='/koti'>Koti-sivultasi</Link></p>
         <button class='btn btn-green' onClick={logout}>Kirjaudu ulos</button>
+      </div>
       </>
   )} else {
     return (

@@ -17,7 +17,7 @@ const LoggedInView = () => {
           ? 'Loading...'
           :
             <>
-              <div className='container px-10 mx-auto'>
+              <div className='container font-Castoro'>
                 <h2>Valitse reseptikirja, johon haluat lisätä reseptin</h2>
                 <ul>
                   {

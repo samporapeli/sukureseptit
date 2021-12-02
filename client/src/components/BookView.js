@@ -45,7 +45,7 @@ const BookView = ({ currentUser }) => {
           :
             <>
               <SideNav recipes={recipes} />
-              <div className='container px-10 mx-auto'>
+              <div className='container font-Castoro px-10 mx-auto'>
                 <Routes>
                   <Route path='/*'>
                     <Route index element={

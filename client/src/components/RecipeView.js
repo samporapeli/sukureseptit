@@ -34,10 +34,12 @@ const RecipeView = () => {
                 <Route path=''>
                   <Route index element={
                     <>
+                    <div className="container font-Castoro">
                       <Recipe recipe={recipe} />
                       <br/>
                       <Comment authorName="Kalle" commentContent="Juujaa" />
                       <InputComment />
+                    </div>
                     </>
                   } />
                   <Route path='edit' element={<h1>TODO: edit view</h1>} />

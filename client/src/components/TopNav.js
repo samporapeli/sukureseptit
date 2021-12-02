@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const TopNav = ({currentUser, bookID}) => {
 
   return (
-      <nav className="sm:flex items-center justify-between flex-wrap bg-yellow-400 p-6">
+      <nav className="font-Castoro container sm:flex items-center justify-between flex-wrap bg-yellow-400 p-6">
       <div className="flex items-center flex-shrink-0 text-black mr-6">
         <span className="font-semibold text-xl tracking-tight">
           <Link to='/'>
