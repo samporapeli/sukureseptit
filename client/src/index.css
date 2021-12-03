@@ -55,13 +55,4 @@
     textarea {
         resize: none;
     }
-
-    .kommentti::before, .kommentti:after {
-        z-index: 1;
-        right: -5px;
-        bottom: -5px;
-        width: 30px;
-        height: 30px;
-        transform: skew(-5deg);
-    }
 }
