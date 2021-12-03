@@ -45,7 +45,7 @@ const App = () => {
             />
             <Route path='koti/*' element={<Home />} />
             <Route path='kirja/:bookID/*' element={<BookView currentUser={currentUser} />} />
-            <Route path='kirja/:bookID/resepti/:recipeID/*' element={<RecipeView />} />
+            <Route path='kirja/:bookID/resepti/:recipeID/*' element={<RecipeView currentUser={currentUser} />} />
             <Route path='kirja/:bookID/uusiresepti' element={<CreateRecipeView />} />
             <Route path='uusiresepti/*' element={<ChooseBook currentUser={currentUser} />}/>
           </Route>

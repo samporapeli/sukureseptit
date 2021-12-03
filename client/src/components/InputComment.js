@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import recipeService from '../services/recipeService'
 
 
-const InputComment = ({ setCommentTrigger }) => {
+const InputComment = ({ setCommentTrigger, currentUser }) => {
   const params = useParams()
   console.log(params.bookID)
   console.log(params.recipeID)
@@ -20,7 +20,7 @@ const InputComment = ({ setCommentTrigger }) => {
     }
   }
 
-  return (
+  if (currentUser) return (
     <>
       <form 
       className="mt-4"
@@ -41,6 +41,7 @@ const InputComment = ({ setCommentTrigger }) => {
       </form> 
     </>
   )
+  else return(<></>)
 }
 
 export default InputComment

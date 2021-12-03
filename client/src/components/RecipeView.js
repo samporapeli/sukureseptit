@@ -6,15 +6,7 @@ import Recipe from './Recipe'
 import InputRecipeBook from './InputRecipeBook'
 import InputComment from './InputComment'
 
-const LinssikeittoIngredients = [
-  {amount: 2, name:"sipuli"},
-  {amount: "pari", unit:"rkl", name:"suola"},
-  {amount: 1, unit:"tlk", name:"chilitomaattimurskaa"}
-]
-
-const LinssikeittoInstructions = "Huuhdo linssit. Kuullota sipulit öljyssä kattilan pohjalla. Lisää vesi ja tomaattimurskat. Anna kiehua hetken ajan ja lisää linssit. Anna kiehua noin puoli tuntia ja lisää kerma. Anna vielä hautua 5-10 minuuttia ennen tarjoilua."
-
-const RecipeView = () => {
+const RecipeView = ({ currentUser }) => {
   const params = useParams()
   const [ recipe, setRecipe ] = useState(null)
   const [ commentTrigger, setCommentTrigger ] = useState(false)
@@ -47,7 +39,7 @@ const RecipeView = () => {
                         )
                       }
                       </div>
-                      <InputComment setCommentTrigger={setCommentTrigger} />
+                      <InputComment setCommentTrigger={setCommentTrigger} currentUser={currentUser} />
                     </div>
                     </>
                   } />
