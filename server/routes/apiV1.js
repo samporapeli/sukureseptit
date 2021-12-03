@@ -105,7 +105,10 @@ router.get('/book/:bookID/recipe/:id', async (req, res) => {
   res.json({
     recipe: (await db.Recipe.findOne({
       where: { id: req.params.id },
-      include: [db.Ingredient, db.RecipeComment],
+      include: [db.Ingredient, {
+        model: db.RecipeComment,
+        include: db.User.scope('basic'),
+      }],
     }))
   })
 })
@@ -119,7 +122,7 @@ router.post('/book/:bookID/recipe/:id/comment', async (req, res) => {
       comment: req.body.comment,
       picture: null,
     })
-    await newComment.addUser(req.user)
+    await newComment.setUser(req.user)
     res.json({
       status: 'OK',
       created: newComment,

@@ -1,39 +1,36 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import recipeService from '../services/recipeService'
 
 
-const InputComment = () => {
+const InputComment = ({ setCommentTrigger }) => {
+  const params = useParams()
+  console.log(params.bookID)
+  console.log(params.recipeID)
+  const [commentData, setCommentData] = useState('')
 
-  const [commentData, setCommentData] = useState(
-    {
-      comment: '',
-    }
-  )
-
-  const addComment = (event) => {
+  const addComment = async (event) => {
     event.preventDefault()
-    recipeService.addComment(commentData)
-  }
-
-  const handleInputChange = (event, key) => {
-    console.log(event.target.value)
-    const newState = {...commentData}
-    newState[key] = event.target.value
-    setCommentData(newState)
+    try{
+      const res = await recipeService.addComment(commentData, params.recipeID, params.bookID)
+      setCommentTrigger(true)
+      setCommentData('')
+    } catch (e) {
+      alert(e)
+    }
   }
 
   return (
     <>
-      <h3>Lisää uusi kommentti</h3>
       <form onSubmit={addComment}>
         <label>
-          Kommentin sisältö:   
+          Kommentoi:
         </label>
         <br />
         <input
           type='text'
-          value={commentData.familyName}
-          onChange={(event) => handleInputChange(event, "comment")}
+          value={commentData}
+          onChange={ (event) => {setCommentData(event.target.value); setCommentTrigger(false)} }
           placeholder='Oi miten maukas'
           />
           <br/>

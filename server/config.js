@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const config = {
   secret: process.env.SUKURESEPTIT_SECRET,
+  port: 3001,
 }
 
 if (!config.secret) {

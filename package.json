@@ -6,6 +6,8 @@
   "scripts": {
     "start": "nodemon server/index.js & cd client && npm start",
     "create-fake-data": "node server/create_fake_data.js",
+    "prod": "node server/index.js",
+    "deploy": "cd client && npm run build && cd .. && npm run prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
