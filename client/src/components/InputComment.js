@@ -22,19 +22,22 @@ const InputComment = ({ setCommentTrigger }) => {
 
   return (
     <>
-      <form onSubmit={addComment}>
+      <form 
+      className="mt-4"
+      onSubmit={addComment}>
         <label>
-          Kommentoi:
+          Lisää uusi kommentti:
         </label>
         <br />
         <input
+          className="p-4 mt-2 w-1/2"
           type='text'
           value={commentData}
           onChange={ (event) => {setCommentData(event.target.value); setCommentTrigger(false)} }
           placeholder='Oi miten maukas'
           />
           <br/>
-        <button className='btn btn-green' type="submit">Tallenna kommenttisi</button>
+        <button className='mt-2 mb-4 btn btn-green' type="submit">Tallenna kommenttisi</button>
       </form> 
     </>
   )

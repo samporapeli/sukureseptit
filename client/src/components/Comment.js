@@ -3,7 +3,10 @@ import React from 'react'
 const Comment = ({ authorName, commentContent }) => {
   return (
     <>
-        <p>{authorName} kommentoi: {commentContent}</p>
+      <div className="kommentti">
+        <p>{authorName} kommentoi:</p>
+        <p>{commentContent}</p>
+      </div>
     </>
   )
 }

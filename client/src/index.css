@@ -35,4 +35,30 @@
     .btn-green:hover {
         @apply bg-green-600;
     }
+
+    .kommentti {
+        @apply max-w-md text-white p-10
+    }
+
+    .kommentti:nth-child(3n + 0){
+        @apply bg-ruskee
+    }
+
+    .kommentti:nth-child(3n + 1){
+        @apply bg-vihree
+    }
+
+    .kommentti:nth-child(3n + 2){
+        @apply bg-kulta
+    }
+    
+
+    .kommentti::before, .kommentti:after {
+        z-index: 1;
+        right: -5px;
+        bottom: -5px;
+        width: 30px;
+        height: 30px;
+        transform: skew(-5deg);
+    }
 }

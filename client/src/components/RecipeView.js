@@ -38,12 +38,15 @@ const RecipeView = () => {
                     <div className="container font-Castoro">
                       <Recipe recipe={recipe} />
                       <br/>
+                      <h4>Kommentit</h4>
+                      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
                       { recipe.RecipeComments
                         .sort((a, b) => a.createdAt.localeCompare(b.createdAt))
                         .map(c =>
                           <Comment key={c.id} authorName={c.User.firstName} commentContent={c.comment} />
                         )
                       }
+                      </div>
                       <InputComment setCommentTrigger={setCommentTrigger} />
                     </div>
                     </>
