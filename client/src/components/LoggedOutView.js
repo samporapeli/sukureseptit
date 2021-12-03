@@ -144,6 +144,13 @@ const LoggedOutView = ({ currentUser, setCurrentUser }) => {
             <p>4. Kutsu sukulaiset tai kaverisi katsomaan ja kommentoimaan reseptikirjan reseptejä. He voivat myös lisätä kirjaan omat reseptinsä! </p>
         </div>
       </div>
+      <h5 className="mt-6">Sukureseptit-palvelun käyttäminen on yksinkertaista. <br/>Tässä kuvia palvelusta ja sen käytöstä:</h5>
+      <div className="grid mt-2 mb-10 grid grid-cols-1 lg:grid-cols-2 gap-4 ">
+      <img className="shadow-md" src={('../assets/recipe.png')} />
+      <img className="shadow-md" src={('../assets/family.png')} />
+      <img className="shadow-md" src={('../assets/adding.jpg')} />
+      </div>
+        
     </div>
     </>
   )
