@@ -11,14 +11,12 @@ const Profile = ({ currentUser, setCurrentUser }) => {
   if (currentUser) {
     return (
       <>
-      <div className="container font-Castoro">
-        <h2>{ currentUser.firstName + ' ' + currentUser.lastName }</h2>
-        <p>Etunimi: { currentUser.firstName }</p>
-        <p>Sukunimi: { currentUser.lastName }</p>
-        <p>Sähköpostiosoite: <a href={ 'mailto:' + currentUser.email }>
+      <div className="container font-Castoro p-10">
+        <h3>Hei, { currentUser.firstName + ' ' + currentUser.lastName }</h3>
+        <p className="text-gray-500">Sähköpostiosoite: <a className="underline" href={ 'mailto:' + currentUser.email }>
           { currentUser.email }
         </a></p>
-        <p>Omat reseptikirjasi löydät <Link to='/koti'>Koti-sivultasi</Link></p>
+        <p className="mt-2 mb-2">Omat reseptikirjasi löydät <Link className="underline" to='/koti'>Koti-sivultasi</Link>.</p>
         <button class='btn btn-green' onClick={logout}>Kirjaudu ulos</button>
       </div>
       </>

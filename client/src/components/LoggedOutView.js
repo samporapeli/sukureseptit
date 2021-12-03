@@ -47,12 +47,19 @@ const LoggedOutView = ({ currentUser, setCurrentUser }) => {
 
   return (
     <>
-      <p>Katso alta, miten Sukureseptit toimii, kirjaudu sisään tai rekisteröidy!</p>
+      <div className="container font-Castoro">
+      <h4 className="mt-10">Tervetuloa Sukuresepteihin!</h4>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-1">
+      <div className="col-span-1 col-start-1 flex flex-col bg-valkoinen rounded-lg shadow-md">
+      
       { currentUser ? <Navigate to='/koti' /> : <></> }
       { !registration
       ? 
-      <form onSubmit={login}>
+      <div>
+      <h5 className="flex flex-col items-center mt-4">Kirjautuminen</h5>
+      <form className="flex flex-col items-center" onSubmit={login}>
         <input
+          className="mt-4 p-4"
           type='text'
           value={email}
           onChange={event => setEmail(event.target.value)}
@@ -60,17 +67,22 @@ const LoggedOutView = ({ currentUser, setCurrentUser }) => {
         </input>
         <br />
         <input
+          className="p-4"
           type='password'
           value={password}
           onChange={event => setPassword(event.target.value)}
           placeholder='salasana'>
         </input>
         <br />
-        <input type='submit' value='Kirjaudu sisään'></input>
+        <button className="btn btn-green bg-vihree" type='submit' value='Kirjaudu sisään'>Kirjaudu sisään</button>
       </form>
+      </div>
       :
-      <form onSubmit={register}>
+      <div>
+      <h5 className="flex flex-col items-center mt-4">Rekisteröityminen</h5>
+      <form className="flex flex-col items-center" onSubmit={register}>
         <input
+          className="p-4 mt-4"
           type='text'
           value={newUser.firstName}
           onChange={event => updateNewUser(event, 'firstName')}
@@ -78,6 +90,7 @@ const LoggedOutView = ({ currentUser, setCurrentUser }) => {
         />
         <br />
         <input
+          className="p-4"
           type='text'
           value={newUser.lastName}
           onChange={event => updateNewUser(event, 'lastName')}
@@ -85,6 +98,7 @@ const LoggedOutView = ({ currentUser, setCurrentUser }) => {
         />
         <br />
         <input
+          className="p-4"
           type='email'
           value={newUser.email}
           onChange={event => updateNewUser(event, 'email')}
@@ -92,18 +106,23 @@ const LoggedOutView = ({ currentUser, setCurrentUser }) => {
         />
         <br />
         <input
+          className="p-4"
           type='password'
           value={newUser.salasana}
           onChange={event => updateNewUser(event, 'password')}
           placeholder='*****'
         />
         <br />
-        <input type='submit' value='Rekisteröidy'></input>
+        <button className="btn btn-green bg-vihree" type='submit' value='Rekisteröidy'>Rekisteröidy</button>
       </form>
+      </div>
       }
-      <button onClick={() => setRegistration(!registration)}>
+      <button className="my-6 underline" onClick={() => setRegistration(!registration)}>
         { !registration ? 'Tarvitsetko käyttäjätunnuksen?' : 'Onko sinulla jo käyttäjätunnus?'}
       </button>
+      </div>
+      </div>
+    </div>
     </>
   )
 }
