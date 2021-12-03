@@ -11,16 +11,17 @@ const BookView = ({ currentUser }) => {
   const [ books, setBooks ] = useState(null)
   const [ searchTerm, setSearchTerm ] = useState('')
   const [ copying, setCopying ] = useState(false)
+  const [ joining, setJoining ] = useState(false)
 
   useEffect(async () => {
     const res = await recipeService.books()
     setBooks(res.data.books)
-  }, [])
+  }, [joining])
 
   useEffect(async () => {
     const res = await recipeService.book(params.bookID)
     setBook(res.data)
-  }, [params])
+  }, [params, joining])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +29,7 @@ const BookView = ({ currentUser }) => {
       setFamily(res.data)
     }
     fetchData()
-  }, [params])
+  }, [params, joining])
 
   const copyInviteLink = () => {
     try {
@@ -49,6 +50,7 @@ const BookView = ({ currentUser }) => {
 
   const joinToBook = async () => {
     const res = await recipeService.joinToBook(params.bookID)
+    setJoining(true)
     if (res.status !== 200) alert(`Error: ${res}`)
   }
 
