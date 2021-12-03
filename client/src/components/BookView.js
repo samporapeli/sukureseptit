@@ -51,21 +51,24 @@ const BookView = ({ currentUser }) => {
           ? 'Loading...'
           :
             <>
-              <SideNav recipes={books} />
-              <div className='container font-Castoro px-10 mx-auto'>
+              {/* <SideNav recipes={books} /> */}
+              <div className='container font-Castoro px-10 pt-10 mx-auto'>
                 <Routes>
                   <Route path='/*'>
                     <Route index element={
                       <>
-                        <Link to={`/kirja/${params.bookID}/uusiresepti`} className='btn btn-green flex items-center justify-center'>Lisää resepti</Link>
-                        <RecipeBookCover recipes={book} family={family} currentUser={currentUser} />
+                      <h2>{book.familyName}</h2>
+                      <p>{book.description}</p>
+                      <div className="grid grid-cols-2 lg:grid-cols-4 lg:gap-1 max-w-md lg:max-w-none mt-8 mb-10">
+                        {/* <RecipeBookCover recipes={book} family={family} currentUser={currentUser} /> */}
+                        <div className="bg-sivu shadow-lg col-span-2 p-10">
                         <h3>Kirjan reseptit</h3>
                         { book
                           ? book.Recipes.length > 0
                             ?
                               <>
-                                <input type='text' placeholder='hae reseptiä...' onChange={(event) => setSearchTerm(event.target.value.toLowerCase()) } />
-                                <ul>
+                                <input className="p-4" type='text' placeholder='hae reseptiä...' onChange={(event) => setSearchTerm(event.target.value.toLowerCase()) } />
+                                <ul className="pt-4 list-disc list-inside">
                                   {book.Recipes
                                     .filter(r => {
                                       const name = r.name.toLowerCase()
@@ -78,7 +81,7 @@ const BookView = ({ currentUser }) => {
                                     })
                                     .map(r => (
                                       <Link to={`/kirja/${params.bookID}/resepti/${r.id}`}>
-                                        <li key={r.id}>
+                                        <li className="hover:underline" key={r.id}>
                                           {r.name}
                                         </li>
                                       </Link>))}
@@ -87,27 +90,33 @@ const BookView = ({ currentUser }) => {
                             : <p>Kirjassa ei vielä ole reseptejä. <Link to={`/kirja/${params.bookID}/uusiresepti`}>Luo ensimmäinen klikkaamalla tästä.</Link></p>
                           : 'Ladataan...' 
                         }
-                        <h3>Reseptikirjassa ovat mukana</h3>
-                        <ul className='list-disc px-6'>
-                          {family
-                          ? family.members.map(member =>
-                            <li key={member.id + ' ' + member.lastName}>
-                              { member.firstName } { member.lastName }
-                            </li>
-                          )
-                          : <li>Ladataan...</li>}
-                        </ul>
-                        <button className='btn btn-green' onClick={ copyInviteLink }>
+                        </div>
+                        <div className="bg-sivu mt-4 lg:mt-0 shadow-lg col-span-2 p-10">
+                          <h4>Reseptikirjan jäsenet</h4>
+                          <ul className='list-disc pt-4 px-6'>
+                            {family
+                            ? family.members.map(member =>
+                              <li key={member.id + ' ' + member.lastName}>
+                                { member.firstName } { member.lastName }
+                              </li>
+                            )
+                            : <li>Ladataan...</li>}
+                          </ul>
+                          <button className=' mt-8 col-span-1 btn bg-vihree btn-green' onClick={ copyInviteLink }>
                           Kopioi rekisteröitymislinkki
                         </button>
-                        <p>Salaisen kirjalinkin kautta sukulaisesi saavat oikeuden tarkastella reseptikirjaa ja rekisteröitymisen jälkeen lisätä omia reseptejään.</p>
+                        <p className="mt-2 text-sm text-ruskee">Salaisen kirjalinkin kautta sukulaisesi saavat oikeuden tarkastella reseptikirjaa ja rekisteröitymisen jälkeen lisätä omia reseptejään.</p>
+                        </div>
+                        </div>
+                        <div className=" col-span-1 mb-10"><Link to={`/kirja/${params.bookID}/uusiresepti`} className='btn bg-vihree btn-green p-4'>Lisää resepti tähän kirjaan</Link></div>
+                        <div className="col-span-1 mb-10">
                         { currentUser && book && books && !books.map(b => b.id).includes(book.id)
                           ? <button className='btn btn-green' onClick={ joinToBook }>Liity suvun reseptikirjaan</button>
                           : <></>
                         } { currentUser ? <></> :
-                          <button className='btn btn-green'><Link to='/'>Rekisteröidy lisätäksesi reseptejä</Link></button>
+                          <button className=' btn btn-green'><Link to='/'>Rekisteröidy lisätäksesi reseptejä</Link></button>
                         }
-
+                        </div>
                       </>
                     }/>
                   </Route>

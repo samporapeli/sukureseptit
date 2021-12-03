@@ -31,7 +31,7 @@ const InputRecipeBook = () => {
 
   return (
     <>
-      <h3>Lisää uusi reseptikirja tästä</h3>
+      <h3 className="mt-10 mb-4">Lisää uusi reseptikirja tästä</h3>
       <form onSubmit={addRecipeBook}>
         <div className="grid gap-4 grid-cols-none ml-4">
         <label>

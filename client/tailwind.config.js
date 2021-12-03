@@ -14,7 +14,8 @@ module.exports = {
         "vihree": "#337357",
         "kulta": "#D58936",
         "beige": "#BA9593", 
-        "valkoinen": "#F4F3EE"
+        "valkoinen": "#F4F3EE",
+        "sivu": "#FFF4E4",
 
       }
     },

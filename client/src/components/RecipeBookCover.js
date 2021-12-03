@@ -7,14 +7,14 @@ const RecipeBookCover = ({ recipes, family, currentUser }) => {
 
   return (
     <>
-      <div className="recipe-book-cover">
-        <h2 className='flex items-center justify-center'>
+      <div className="col-span-2 border-8 border-ruskee text-white bg-ruskee rounded-lg flex-col text-center align-center">
+        <h2 className=''>
           { recipes
             ? recipes.familyName
             : 'Ladataan...'
           }
         </h2>
-        <h3 className='flex items-center justify-center'>
+        <h3 className=''>
           { recipes
             ? recipes.description
             : 'Ladataan...'

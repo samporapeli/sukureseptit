@@ -18,15 +18,15 @@ const LoggedInView = () => {
           :
             <>
               <div className='container font-Castoro'>
-                <h2>Valitse reseptikirja, johon haluat lisätä reseptin</h2>
-                <ul>
+                <h2 className="mt-10" >Valitse reseptikirja, johon haluat lisätä reseptin</h2>
+                <ul className="grid grid-cols-3 gap-4 mt-4">
                   {
                     books.map(book =>
-                        <li key={book.id}>
-                          <Link to={'/kirja/' + book.id +'/uusiresepti'}>
+                      <Link className="flex-1 border-4 hover:bg-ruskee hover:text-white border-ruskee bg-none text-center p-10 rounded-lg" to={'/kirja/' + book.id +'/uusiresepti'}>
+                        <li className="text-center center" key={book.id}>
                             {book.familyName}
-                          </Link>
                         </li>
+                      </Link>
                     )
                   }
                 </ul>
