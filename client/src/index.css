@@ -52,6 +52,9 @@
         @apply bg-kulta
     }
     
+    textarea {
+        resize: none;
+    }
 
     .kommentti::before, .kommentti:after {
         z-index: 1;
