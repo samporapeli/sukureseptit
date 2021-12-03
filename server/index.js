@@ -17,6 +17,7 @@ app.use(morgan('combined'))
 app.use('/api/v1/accounts', accounts)
 app.use('/api/v1', apiV1)
 app.use('/static', express.static('client/build/static'))
+app.use('/assets', express.static('client/build/assets'))
 app.use('*', (req, res) => {
   res.sendFile('index.html', { root: 'client/build/' })
 })
