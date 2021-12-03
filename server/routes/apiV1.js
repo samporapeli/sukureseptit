@@ -82,7 +82,8 @@ router.post('/book/:bookID/recipe', async (req, res) => {
       (await db.RecipeBook.findOne({
         where: { id: req.params.bookID }
       })).createRecipe({
-        ...req.body
+        ...req.body,
+        originalAuthor: req.user.firstName + ' ' + req.user.lastName
       })
     req.body.ingredients.forEach(ingr => {
       newRecipe.createIngredient({

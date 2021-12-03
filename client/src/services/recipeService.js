@@ -38,7 +38,7 @@ const addComment = async (commentData, recipeID, bookID) => {
 }
 
 const addRecipe = async (bookID, newRecipe) => {
-  return await axios.post(`${baseUrl}/api/v1/book/${bookID}/recipe`, newRecipe)
+  return await axios.post(`${baseUrl}/api/v1/book/${bookID}/recipe`, newRecipe, loginService.authHeader())
 }
 
 const joinToBook = async (bookID) => {
