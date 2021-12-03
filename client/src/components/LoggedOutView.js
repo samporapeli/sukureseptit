@@ -38,8 +38,9 @@ const LoggedOutView = ({ currentUser, setCurrentUser }) => {
       await loginService.register(newUser)
       setEmail(newUser.email)
       setPassword(newUser.password)
-      // need to pass some event so...
-      await login(event)
+      setRegistration(false)
+      // oh my i am sorry but just calling login function did not work for some reason
+      document.getElementById('login-button').click()
     } catch (e) {
       alert(e)
     }
@@ -79,7 +80,7 @@ const LoggedOutView = ({ currentUser, setCurrentUser }) => {
           placeholder='salasana'>
         </input>
         <br />
-        <button className="btn btn-green bg-vihree" type='submit' value='Kirjaudu sisään'>Kirjaudu sisään</button>
+        <button id='login-button' className="btn btn-green bg-vihree" type='submit' value='Kirjaudu sisään'>Kirjaudu sisään</button>
       </form>
       </div>
       :
