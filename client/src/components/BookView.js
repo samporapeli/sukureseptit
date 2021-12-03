@@ -10,6 +10,7 @@ const BookView = ({ currentUser }) => {
   const [ family, setFamily ] = useState(null)
   const [ books, setBooks ] = useState(null)
   const [ searchTerm, setSearchTerm ] = useState('')
+  const [ copying, setCopying ] = useState(false)
 
   useEffect(async () => {
     const res = await recipeService.books()
@@ -29,13 +30,21 @@ const BookView = ({ currentUser }) => {
     fetchData()
   }, [params])
 
-  const copyInviteLink = async () => {
-    if (navigator.cliboard) {
-      await navigator.clipboard.writeText(window.location.href)
-      alert('Linkki kopioitu leikepöydälle!')
+  const copyInviteLink = () => {
+    try {
+      setCopying(true)
+      setTimeout(() => {
+        const e = document.getElementById('copy-text-input')
+        e.focus()
+        e.select()
+        if (document.execCommand('copy'))
+          alert('Linkki kopioitu leikepöydälle!')
+        else throw 'error'
+      }, 100)
+    } catch (e) {
+      console.log(e)
+      alert('Automaattinen kopiointi ei onnistunut. Kopioi osoitepalkin sisältö manuaalisesti!')
     }
-    else
-      alert('Selaimesi ei tue automaattista kopiointia. Kopioi osoitepalkin sisältö manuaalisesti!')
   }
 
   const joinToBook = async () => {
@@ -106,6 +115,7 @@ const BookView = ({ currentUser }) => {
                           Kopioi rekisteröitymislinkki
                         </button>
                         <p className="mt-2 text-sm text-ruskee">Salaisen kirjalinkin kautta sukulaisesi saavat oikeuden tarkastella reseptikirjaa ja rekisteröitymisen jälkeen lisätä omia reseptejään.</p>
+                        { copying ? <input id='copy-text-input' type='text' readOnly value={window.location.href}/>: <></>}
                         </div>
                         </div>
                         <div className=" col-span-1 mb-10"><Link to={`/kirja/${params.bookID}/uusiresepti`} className='btn bg-vihree btn-green p-4'>Lisää resepti tähän kirjaan</Link></div>
