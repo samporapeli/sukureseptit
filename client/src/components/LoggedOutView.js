@@ -49,8 +49,13 @@ const LoggedOutView = ({ currentUser, setCurrentUser }) => {
     <>
       <div className="container font-Castoro">
       <h4 className="mt-10">Tervetuloa Sukuresepteihin!</h4>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-1">
-      <div className="col-span-1 col-start-1 flex flex-col bg-valkoinen rounded-lg shadow-md">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="col-span-1 sm:max-w-xl md:max-w-xl lg:max-w-none lg:col-span-2 col-start-1 bg-valkoinen rounded-lg shadow-md p-8">
+        <h4 className="mt-2">Koko suvun reseptit yhdessä paikassa.</h4>
+        <p className="mt-2">Sukureseptien avulla koko perheen ja suvun reseptit säilyvät sukupolvelta toiselle. <br/> Suvun parhaat reseptit ovat salassa kun pääsy resepteihin on vain heillä, jotka olet kutsunut. </p>
+        <p className="mt-8">Kirjaudu tai rekisteröidy luodaksesi reseptikirja.</p>
+      </div>
+      <div className="col-span-1 max-w-xl flex flex-col bg-valkoinen rounded-lg shadow-md">
       
       { currentUser ? <Navigate to='/koti' /> : <></> }
       { !registration
@@ -121,6 +126,22 @@ const LoggedOutView = ({ currentUser, setCurrentUser }) => {
         { !registration ? 'Tarvitsetko käyttäjätunnuksen?' : 'Onko sinulla jo käyttäjätunnus?'}
       </button>
       </div>
+      </div>
+      <p className="mt-6">Näin yksinkertaista se on:</p>
+      <div className="mt-2 mb-10 grid grid-cols-1 lg:grid-cols-4 gap-4">
+        <div className="bg-ruskee text-white shadow-md span-col-1 p-10">
+
+            <p>1. Rekisteröidy palveluun!</p>
+        </div>
+        <div className="bg-vihree text-white shadow-md span-col-1 p-10">
+            <p>2. Luo reseptikirja</p>
+        </div>
+        <div className="bg-kulta text-white shadow-md span-col-1 p-10">
+            <p>3. Lisää reseptikirjaan reseptisi</p>
+        </div>
+        <div className="bg-beige text-white shadow-md span-col-1 p-10">
+            <p>4. Kutsu sukulaiset tai kaverisi katsomaan ja kommentoimaan reseptikirjan reseptejä. He voivat myös lisätä kirjaan omat reseptinsä! </p>
+        </div>
       </div>
     </div>
     </>
