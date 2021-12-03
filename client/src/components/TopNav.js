@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const TopNav = ({currentUser, bookID}) => {
 
   return (
-      <nav className="font-Castoro container sm:flex items-center justify-between flex-wrap bg-yellow-400 p-6">
+      <nav className="font-Castoro container sm:flex items-center justify-between bg-yellow-400 flex-wrap p-6">
       <div className="flex items-center flex-shrink-0 text-black mr-6">
         <span className="font-semibold text-xl tracking-tight">
           <Link to='/'>
@@ -15,7 +15,7 @@ const TopNav = ({currentUser, bookID}) => {
       </div>
       <div className="w-full block flex-initial lg:flex-grow lg:items-center lg:w-auto text-sm">
           <Link to={"/uusiresepti"}
-          className="block mt-4 lg:inline-block lg:mt-0 text-green-600 hover:text-white">
+          className="block mt-4 lg:inline-block lg:mt-0 hover:underline">
             Lisää uusi resepti
       </Link>
       </div>

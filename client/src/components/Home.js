@@ -19,9 +19,9 @@ const LoggedInView = () => {
           ? 'Loading...'
           :
             <>
-              <div className=''>
+              <div className="mt-10">
                 <h2>Reseptikirjasi</h2>
-                <ul className="grid grid-cols-3 gap-4">
+                <ul className="grid grid-cols-3 gap-4 mt-4">
                   {
                     books.map(book =>
                       <Link className="flex-1 border-4 hover:bg-ruskee hover:text-white border-ruskee bg-none text-center p-10 rounded-lg" to={'/kirja/' + book.id}>
