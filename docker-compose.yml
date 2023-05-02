@@ -1,0 +1,13 @@
+version: "3.3"
+
+services:
+  app:
+    container_name: sukureseptit
+    build:
+      context: .
+    volumes:
+      - ./db_dev.sqlite3:/app/db_dev.sqlite3
+      - ./db_prod.sqlite3:/app/db_prod.sqlite3
+    ports:
+      - "4520:4520"
+    restart: unless-stopped
